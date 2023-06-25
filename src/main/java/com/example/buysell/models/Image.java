@@ -24,10 +24,6 @@ public class Image {
     private Long size;
     @Column(name = "contentType")
     private String contentType;
-    @Column(name = "isPreviewImage")
-    private boolean isPreviewImage;
     @Lob
     private byte[] bytes;
-    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
-    private Product product;
 }

@@ -9,9 +9,9 @@
 <b>Номер телефона: </b> ${user.phoneNumber}<br>
 <b>Email: </b> ${user.email}<br>
 <h4>Товары пользователя ${user.name}</h4>
-<#list products as product>
+<#list orders as order>
     <div>
-        <p><b>${product.title}</b> ${product.price} руб. | <a href="/product/${product.id}">Подробнее...</a></p>
+        <p><b>${order.title}</b> ${order.price} руб. | <a href="/order/${order.id}">Подробнее...</a></p>
     </div>
     <#else>
     <h3>Товаров нет</h3>
