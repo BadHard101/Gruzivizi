@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>BUYSELL</title>
+    <title>GruziVizi</title>
 </head>
 <body>
-<h1>BUYSELL</h1>
+<h1>GruziVizi</h1>
 <hr>
 <h4>Панель администратора</h4>
 <table border="1">
@@ -22,7 +22,7 @@
             <th>${user.email}</th>
             <th>${user.phoneNumber}</th>
             <th><#if user.active>true<#else>false</#if></th>
-            <th><#list user.roles as role>${role}</#list></th>
+            <th><#list user.roles as role>${role}<br></#list></th>
             <th>
                 <form action="/admin/user/ban/${user.id}" method="post">
                     <input type="hidden" name="_csrf" value="${_csrf.token}">

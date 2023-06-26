@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>BUYSELL</title>
+    <title>GruziVizi</title>
 </head>
 <body>
-<h1>BUYSELL</h1><hr>
+<h1>GruziVizi</h1><hr>
 <h4>Регистрация</h4>
 <form action="/registration" method="post">
     Имя пользователя: <input type="text" name="name"><br><br>

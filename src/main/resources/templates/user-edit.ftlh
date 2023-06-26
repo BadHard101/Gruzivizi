@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>BUYSELL</title>
+    <title>GruziVizi</title>
 </head>
 <body>
-<h1>BUYSELL</h1><hr>
+<h1>GruziVizi</h1><hr>
 <h3>Редактирование пользователя ${user.name}</h3>
 <form action="/admin/user/edit" method="post">
     <#list roles as role>

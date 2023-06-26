@@ -21,6 +21,11 @@ public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
+    public boolean userExists(User user) {
+        if (userRepository.findByEmail(user.getEmail()) != null) return true;
+        else return false;
+    }
+
     public boolean createUser(User user) {
         String email = user.getEmail();
         if (userRepository.findByEmail(email) != null) return false;
