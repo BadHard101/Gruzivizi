@@ -11,6 +11,9 @@
     <#if user.isAdmin()>
         <a href="/admin">Панель администратора</a><br><br>
     </#if>
+    <#if user.isCarrier()>
+        <a href="/carrier">Панель перевозчика</a><br><br>
+    </#if>
     <form action="/logout" method="post">
         <input type="hidden" name="_csrf" value="${_csrf.token}">
         <input type="submit" value="Выйти"/>

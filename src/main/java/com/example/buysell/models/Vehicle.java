@@ -31,4 +31,6 @@ public class Vehicle {
     private boolean hydroboard;
     @Column(name = "thermal_protection")
     private boolean thermalProtection;
+    @Column(name = "busy")
+    private boolean busy;
 }

@@ -51,6 +51,10 @@ public class User implements UserDetails {
         return roles.contains(Role.ROLE_ADMIN);
     }
 
+    public boolean isCarrier() {
+        return roles.contains(Role.ROLE_CARRIER);
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return roles;

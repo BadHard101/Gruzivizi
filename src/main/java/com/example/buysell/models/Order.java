@@ -42,10 +42,15 @@ public class Order {
             joinColumns = @JoinColumn(name = "order_id"))
     @Enumerated(EnumType.STRING)
     private Set<Status> status = new HashSet<>();
+
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn
     private User user;
     private LocalDateTime dateOfCreated;
+
+    public void setStatus(Status status) {
+        this.status.add(status);
+    }
 
     @PrePersist
     private void init() {
