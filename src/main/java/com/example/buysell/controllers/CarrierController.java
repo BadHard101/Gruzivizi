@@ -26,10 +26,12 @@ public class CarrierController {
     private final VehicleService vehicleService;
 
     @GetMapping("/carrier")
-    public String carriersPanel(Model model) {
+    public String carriersPanel(Model model, Principal principal) {
         model.addAttribute("orders", orderService.list());
+        model.addAttribute("user", orderService.getUserByPrincipal(principal));
         return "carrier";
     }
+
     @PostMapping("/carrier/order/accept/{id}")
     public String acceptOrder(@PathVariable("id") Long id, Principal principal) {
         Order order = orderService.getOrderById(id);
@@ -38,6 +40,19 @@ public class CarrierController {
             order.setCarrierId(
                     orderService.getUserByPrincipal(principal).getId()
             );
+            orderRepository.save(order);
+        }
+        return "redirect:/carrier";
+    }
+
+    @PostMapping("/carrier/order/cancel/{id}")
+    public String cancelOrder(@PathVariable("id") Long id, Principal principal) {
+        Order order = orderService.getOrderById(id);
+        if (order.getCarrierId() != null &&
+                order.getCarrierId().equals(
+                        orderService.getUserByPrincipal(principal).getId())) {
+            order.setStatus(Status.CREATED);
+            order.setCarrierId(null);
             orderRepository.save(order);
         }
         return "redirect:/carrier";
