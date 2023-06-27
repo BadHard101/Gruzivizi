@@ -33,11 +33,13 @@ public class CarrierController {
     @PostMapping("/carrier/order/accept/{id}")
     public String acceptOrder(@PathVariable("id") Long id, Principal principal) {
         Order order = orderService.getOrderById(id);
-        order.setCarrierId(
-                orderService.getUserByPrincipal(principal).getId()
-        );
-        order.setStatus(Status.ACCEPTED);
-        orderRepository.save(order);
+        if (order.getCarrierId() != null) {
+            order.setCarrierId(
+                    orderService.getUserByPrincipal(principal).getId()
+            );
+            order.setStatus(Status.ACCEPTED);
+            orderRepository.save(order);
+        }
         return "redirect:/carrier";
     }
 
