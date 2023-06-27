@@ -55,6 +55,11 @@ public class Order {
         this.status.add(status);
     }
 
+    public boolean isCreated() {
+        if (status.contains(Status.CREATED)) return true;
+        return false;
+    }
+
     @PrePersist
     private void init() {
         dateOfCreated = LocalDateTime.now();

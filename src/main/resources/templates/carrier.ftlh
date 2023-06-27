@@ -32,29 +32,31 @@
         <th>Подходящие ТС</th>
     </tr>
     <#list orders as order>
-        <tr>
-            <#--<th>${order.id}</th>
-            <th>${order.dateOfCreated}</th>-->
-            <th>${order.user.name}</th>
-            <th>${order.user.phoneNumber}</th>
-            <th>${order.pointA}</th>
-            <th>${order.pointB}</th>
-            <#--<th>${order.height}</th>
-            <th>${order.width}</th>
-            <th>${order.weight}</th>-->
-            <th>${order.passengers}</th>
-            <#--<th><#if order.hydroboard>true<#else>false</#if></th>
-            <th><#if order.thermalProtection>true<#else>false</#if></th>
-            <th><#list order.status as status>${status}<br></#list></th>-->
-            <th><a href="/admin/order/edit/${order.id}">мяу</a></th>
-            <th>
-                <form action="/carrier/order/accept/${order.id}" method="post">
-                    <input type="hidden" name="_csrf" value="${_csrf.token}">
-                    <input type="submit" value="Принять">
-                </form>
-            </th>
-            <th><a href="/admin/order/edit/${order.id}">мяу</a></th>
-        </tr>
+        <#if order.isCreated()>
+            <tr>
+                <#--<th>${order.id}</th>
+                <th>${order.dateOfCreated}</th>-->
+                <th>${order.user.name}</th>
+                <th>${order.user.phoneNumber}</th>
+                <th>${order.pointA}</th>
+                <th>${order.pointB}</th>
+                <#--<th>${order.height}</th>
+                <th>${order.width}</th>
+                <th>${order.weight}</th>-->
+                <th>${order.passengers}</th>
+                <#--<th><#if order.hydroboard>true<#else>false</#if></th>
+                <th><#if order.thermalProtection>true<#else>false</#if></th>
+                <th><#list order.status as status>${status}<br></#list></th>-->
+                <th><a href="/admin/order/edit/${order.id}">мяу</a></th>
+                <th>
+                    <form action="/carrier/order/accept/${order.id}" method="post">
+                        <input type="hidden" name="_csrf" value="${_csrf.token}">
+                        <input type="submit" value="Принять">
+                    </form>
+                </th>
+                <th><a href="/admin/order/edit/${order.id}">мяу</a></th>
+            </tr>
+        </#if>
     <#else>
         <h3>Заказов нет</h3>
     </#list>
