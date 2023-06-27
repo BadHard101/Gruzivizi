@@ -9,9 +9,8 @@
 <#if user.email??>
     <h3>Имя пользователя: <i>${user.name}</i></h3>
     <#if user.isAdmin()>
-        <a href="/admin">Панель администратора</a>
+        <a href="/admin">Панель администратора</a><br>
     </#if>
-    <br>
     <form action="/logout" method="post">
         <input type="hidden" name="_csrf" value="${_csrf.token}">
         <input type="submit" value="Выйти"/>
@@ -34,22 +33,16 @@
 </#list>
 <#if user.email??>
     <hr>
-    <#--<h3>Создать новый товар</h3>
-    <form action="/order/create" method="post" enctype="multipart/form-data">
-        Название объявления: <input type="text" name="title"/><br><br>
-        Описание объявления: <input type="text" name="description"/><br><br>
-        Цена: <input type="number" name="price"/><br><br>
-        Точка А: <input type="text" name="city"/><br><br>
-        <input type="hidden" name="_csrf" value="${_csrf.token}">
-        <input type="submit" value="Добавить заказ"/>
-    </form>-->
-
     <h3>Заказать перевозку</h3>
     <form action="/order/create" method="post" enctype="multipart/form-data">
         Адрес загрузки: <input type="text" name="pointA"/><br><br>
         Адрес разгрузки: <input type="text" name="pointB"/><br><br>
-        Максимальная высота груза: <input type="number" name="height"/><br><br>
-        Максимальная ширина груза: <input type="number" name="width"/><br><br>
+        Максимальный вес груза: <input type="number" name="weight"/><br><br>
+        Максимальная высота груза: <input type="number" step="0.1" name="height"/><br><br>
+        Максимальная ширина груза: <input type="number" step="0.1" name="width"/><br><br>
+        Пассажиры: <input type="number" name="passengers"/><br><br>
+        Гидроборт: <input type="checkbox" name="hydroboard"/><br><br>
+        Термозащита: <input type="checkbox" name="thermalProtection"/><br><br>
         <input type="hidden" name="_csrf" value="${_csrf.token}">
         <input type="submit" value="Добавить заказ"/>
     </form>
