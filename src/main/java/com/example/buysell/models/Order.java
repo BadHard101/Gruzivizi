@@ -37,6 +37,8 @@ public class Order {
     private boolean hydroboard;
     @Column(name = "thermal_protection")
     private boolean thermalProtection;
+    @Column(name = "carrier_id")
+    private Long carrierId;
     @ElementCollection(targetClass = Status.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "order_status",
             joinColumns = @JoinColumn(name = "order_id"))
@@ -49,6 +51,7 @@ public class Order {
     private LocalDateTime dateOfCreated;
 
     public void setStatus(Status status) {
+        this.status.clear();
         this.status.add(status);
     }
 
