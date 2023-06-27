@@ -6,6 +6,7 @@ import com.example.buysell.models.enums.Role;
 import com.example.buysell.models.enums.Status;
 import com.example.buysell.services.OrderService;
 import com.example.buysell.services.UserService;
+import com.example.buysell.services.VehicleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -23,6 +24,7 @@ import java.util.Map;
 public class AdminController {
     private final UserService userService;
     private final OrderService orderService;
+    private final VehicleService vehicleService;
 
     @GetMapping("/admin")
     public String admin(Model model) {
@@ -41,10 +43,22 @@ public class AdminController {
         return "ordersPanel";
     }
 
+    @GetMapping("/admin/vehiclesPanel")
+    public String vehiclesPanel(Model model) {
+        model.addAttribute("vehicles", vehicleService.list());
+        return "vehiclesPanel";
+    }
+
     @PostMapping("/admin/order/delete/{id}")
     public String orderDelete(@PathVariable("id") Long id) {
         orderService.deleteOrder(id);
         return "ordersPanel";
+    }
+
+    @PostMapping("/admin/vehicle/delete/{id}")
+    public String vehicleDelete(@PathVariable("id") Long id) {
+        vehicleService.deleteVehicle(id);
+        return "redirect:/admin/vehiclesPanel";
     }
 
     @PostMapping("/admin/user/ban/{id}")
