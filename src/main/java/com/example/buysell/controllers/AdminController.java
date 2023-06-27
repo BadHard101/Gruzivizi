@@ -52,7 +52,7 @@ public class AdminController {
     @PostMapping("/admin/order/delete/{id}")
     public String orderDelete(@PathVariable("id") Long id) {
         orderService.deleteOrder(id);
-        return "ordersPanel";
+        return "redirect:/admin/ordersPanel";
     }
 
     @PostMapping("/admin/vehicle/delete/{id}")
