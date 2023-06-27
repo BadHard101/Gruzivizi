@@ -1,11 +1,15 @@
 package com.example.buysell.models;
 
+import com.example.buysell.models.enums.Role;
+import com.example.buysell.models.enums.Status;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "orders")
@@ -33,6 +37,11 @@ public class Order {
     private boolean hydroboard;
     @Column(name = "thermal_protection")
     private boolean thermalProtection;
+    @ElementCollection(targetClass = Status.class, fetch = FetchType.EAGER)
+    @CollectionTable(name = "order_status",
+            joinColumns = @JoinColumn(name = "order_id"))
+    @Enumerated(EnumType.STRING)
+    private Set<Status> status = new HashSet<>();
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn
     private User user;
@@ -41,5 +50,6 @@ public class Order {
     @PrePersist
     private void init() {
         dateOfCreated = LocalDateTime.now();
+        status.add(Status.CREATED);
     }
 }
