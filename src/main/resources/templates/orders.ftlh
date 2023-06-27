@@ -37,7 +37,7 @@
     <form action="/order/create" method="post" enctype="multipart/form-data">
         Адрес загрузки: <input type="text" name="pointA"/><br><br>
         Адрес разгрузки: <input type="text" name="pointB"/><br><br>
-        Максимальный вес груза: <input type="number" name="weight"/><br><br>
+        Максимальный вес груза: <input type="number" step="0.1" name="weight"/><br><br>
         Максимальная высота груза: <input type="number" step="0.1" name="height"/><br><br>
         Максимальная ширина груза: <input type="number" step="0.1" name="width"/><br><br>
         Пассажиры: <input type="number" name="passengers"/><br><br>
