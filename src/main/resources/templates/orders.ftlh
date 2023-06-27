@@ -9,7 +9,7 @@
 <#if user.email??>
     <h3>Имя пользователя: <i>${user.name}</i></h3>
     <#if user.isAdmin()>
-        <a href="/admin">Панель администратора</a><br>
+        <a href="/admin">Панель администратора</a><br><br>
     </#if>
     <form action="/logout" method="post">
         <input type="hidden" name="_csrf" value="${_csrf.token}">
