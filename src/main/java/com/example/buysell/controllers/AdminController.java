@@ -93,4 +93,11 @@ public class AdminController {
         return "redirect:/admin/ordersPanel";
     }
 
+    @GetMapping("/user/{user}")
+    public String userInfo(@PathVariable("user") User user, Model model) {
+        model.addAttribute("user", user);
+        model.addAttribute("orders", user.getOrders());
+        return "user-info";
+    }
+
 }

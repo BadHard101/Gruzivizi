@@ -14,6 +14,6 @@
 <b>Цена: </b>${order.height}<br>
 <b>Город: </b>${order.pointA}<br>
 <b>Город: </b>${order.pointB}<br>
-<b>Автор: </b><a href="/user/${order.user.id}">${order.user.name}</a><br>
+<b>Автор: </b><a href="/account">${order.user.name}</a><br>
 </body>
 </html>

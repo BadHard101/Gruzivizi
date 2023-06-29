@@ -3,6 +3,7 @@ package com.example.buysell.controllers;
 import com.example.buysell.models.User;
 import com.example.buysell.repositories.UserRepository;
 import com.example.buysell.services.CustomUserDetailsService;
+import com.example.buysell.services.OrderService;
 import com.example.buysell.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.AuthenticationException;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.security.Principal;
 import java.util.Arrays;
 
 @Controller
@@ -23,7 +25,8 @@ import java.util.Arrays;
 public class UserController {
     private boolean loginFlag = false;
     private final UserService userService;
-    private final UserRepository userRepository;
+
+    private final OrderService orderService;
 
 
     @GetMapping("/login")
@@ -61,8 +64,9 @@ public class UserController {
         return "redirect:/login";
     }
 
-    @GetMapping("/user/{user}")
-    public String userInfo(@PathVariable("user") User user, Model model) {
+    @GetMapping("/account")
+    public String accountInfo(Model model, Principal principal) {
+        User user = orderService.getUserByPrincipal(principal);
         model.addAttribute("user", user);
         model.addAttribute("orders", user.getOrders());
         return "user-info";
