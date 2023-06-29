@@ -1,6 +1,7 @@
 package com.example.buysell.controllers;
 
 import com.example.buysell.models.User;
+import com.example.buysell.repositories.UserRepository;
 import com.example.buysell.services.CustomUserDetailsService;
 import com.example.buysell.services.UserService;
 import lombok.RequiredArgsConstructor;
@@ -15,12 +16,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Arrays;
 
 @Controller
 @RequiredArgsConstructor
 public class UserController {
     private boolean loginFlag = false;
     private final UserService userService;
+    private final UserRepository userRepository;
+
 
     @GetMapping("/login")
     public String login() {
