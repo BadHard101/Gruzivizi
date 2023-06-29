@@ -22,15 +22,21 @@
     <a href="/login">Войти</a></h1>
 </#if>
 <hr>
-<h4>Перевозки по всей России</h4>
-<form action="/" method="get">
-    Поиск по заказа по id: <input type="number" name="id">
-    <input type="submit" value="Поиск"/>
-</form>
+<h4>Ваши заказы:</h4>
+<#if user.isEnabled()>
+    <form action="/" method="get">
+        Поиск заказа по id: <input type="number" name="id">
+        <input type="submit" value="Поиск"/>
+    </form>
+<#else>
+    Авторизируйтесь, чтобы сделать заказ!
+</#if>
 <#list orders as order>
+    <#if user.isEnabled() && order.user.getId() == user.getId()>
         <div>
             <p><b>${order.id}</b> от ${order.user.name} | <a href="/order/${order.id}">Подробнее...</a></p>
         </div>
+    </#if>
     <#else>
     <h3>Заказов нет</h3>
 </#list>
