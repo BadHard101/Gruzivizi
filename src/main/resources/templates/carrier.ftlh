@@ -6,8 +6,8 @@
 <body>
 <h1>GruziVizi</h1>
 <hr>
-<h4>Панель перевозчика</h4>
-
+<h2>Панель перевозчика</h2>
+<hr>
 <h4>Принятые заказы</h4>
 <table border="1">
     <tr>
@@ -44,7 +44,7 @@
                 <#--<th><#if order.hydroboard>true<#else>false</#if></th>
                 <th><#if order.thermalProtection>true<#else>false</#if></th>
                 <th><#list order.status as status>${status}<br></#list></th>-->
-                <th><a href="/admin/order/edit/${order.id}">мяу</a></th>
+                <th><a href="/order/${order.id}">Подробнее</a></th>
                 <th>
                     <form action="/carrier/order/cancel/${order.id}" method="post">
                         <input type="hidden" name="_csrf" value="${_csrf.token}">
@@ -58,7 +58,7 @@
         <h3>Заказов нет</h3>
     </#list>
 </table>
-
+<hr>
 <h4>Доступные заказы</h4>
 <table border="1">
     <tr>
@@ -95,7 +95,7 @@
                 <#--<th><#if order.hydroboard>true<#else>false</#if></th>
                 <th><#if order.thermalProtection>true<#else>false</#if></th>
                 <th><#list order.status as status>${status}<br></#list></th>-->
-                <th><a href="/admin/order/edit/${order.id}">мяу</a></th>
+                <th><a href="/order/${order.id}">Подробнее</a></th>
                 <th>
                     <form action="/carrier/order/accept/${order.id}" method="post">
                         <input type="hidden" name="_csrf" value="${_csrf.token}">

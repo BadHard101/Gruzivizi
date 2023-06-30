@@ -27,9 +27,10 @@ public class OrderController {
     }
 
     @GetMapping("/order/{id}")
-    public String orderInfo(@PathVariable Long id, Model model) {
+    public String orderInfo(@PathVariable Long id, Model model, Principal principal) {
         Order order = orderService.getOrderById(id);
         model.addAttribute("order", order);
+        model.addAttribute("user", orderService.getUserByPrincipal(principal));
         return "order-info";
     }
 

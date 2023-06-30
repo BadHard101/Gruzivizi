@@ -8,6 +8,9 @@
 <hr>
 <#if user.email??>
     <h3>Имя пользователя: <i>${user.name}</i></h3>
+    <#if user.isActive()>
+        <a href="/account">Личный кабинет</a><br><br>
+    </#if>
     <#if user.isAdmin()>
         <a href="/admin">Панель администратора</a><br><br>
     </#if>
