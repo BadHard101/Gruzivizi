@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @RequiredArgsConstructor
@@ -64,7 +64,7 @@ public class AdminController {
     @PostMapping("/admin/user/ban/{id}")
     public String userBan(@PathVariable("id") Long id) {
         userService.banUser(id);
-        return "redirect:/admin";
+        return "redirect:/admin/usersPanel";
     }
 
     @GetMapping("/admin/user/edit/{user}")
@@ -75,9 +75,9 @@ public class AdminController {
     }
 
     @PostMapping("/admin/user/edit")
-    public String userEdit(@RequestParam("userId") User user, @RequestParam Map<String, String> form) {
-        userService.changeUserRoles(user, form);
-        return "redirect:/admin";
+    public String userEdit(@RequestParam("userId") User user, @RequestParam("userRole") String role) {
+        userService.changeUserRole(user, role);
+        return "redirect:/admin/usersPanel";
     }
 
     @GetMapping("/admin/order/edit/{order}")

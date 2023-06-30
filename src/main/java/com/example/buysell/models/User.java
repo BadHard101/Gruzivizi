@@ -39,7 +39,6 @@ public class User implements UserDetails {
     private List<Order> orders = new ArrayList<>();
     private LocalDateTime dateOfCreated;
 
-
     @PrePersist
     private void init() {
         dateOfCreated = LocalDateTime.now();
