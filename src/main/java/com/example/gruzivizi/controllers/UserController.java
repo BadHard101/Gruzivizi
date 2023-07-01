@@ -1,24 +1,19 @@
-package com.example.buysell.controllers;
+package com.example.gruzivizi.controllers;
 
-import com.example.buysell.models.User;
-import com.example.buysell.repositories.UserRepository;
-import com.example.buysell.services.CustomUserDetailsService;
-import com.example.buysell.services.OrderService;
-import com.example.buysell.services.UserService;
+import com.example.gruzivizi.models.User;
+import com.example.gruzivizi.services.OrderService;
+import com.example.gruzivizi.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.WebAttributes;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.security.Principal;
-import java.util.Arrays;
 
 @Controller
 @RequiredArgsConstructor

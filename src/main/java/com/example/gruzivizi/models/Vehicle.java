@@ -1,4 +1,4 @@
-package com.example.buysell.models;
+package com.example.gruzivizi.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

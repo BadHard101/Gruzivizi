@@ -1,4 +1,4 @@
-package com.example.buysell;
+package com.example.gruzivizi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

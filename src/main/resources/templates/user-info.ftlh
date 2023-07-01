@@ -6,7 +6,7 @@
 <body>
 <h1>GruziVizi</h1><hr>
 <h2>Пользователь ${user.name}</h2>
-<b>Подробная информация:</b><br>
+<h3>Подробная информация:</h3>
 <b>ID: </b> ${user.id}<br>
 <b>Email: </b> ${user.email}<br>
 <b>Номер телефона: </b> ${user.phoneNumber}<br>

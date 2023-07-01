@@ -1,6 +1,6 @@
-package com.example.buysell.repositories;
+package com.example.gruzivizi.repositories;
 
-import com.example.buysell.models.Order;
+import com.example.gruzivizi.models.Order;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

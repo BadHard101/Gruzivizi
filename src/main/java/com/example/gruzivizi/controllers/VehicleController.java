@@ -1,14 +1,13 @@
-package com.example.buysell.controllers;
+package com.example.gruzivizi.controllers;
 
-import com.example.buysell.models.Vehicle;
-import com.example.buysell.services.VehicleService;
+import com.example.gruzivizi.models.Vehicle;
+import com.example.gruzivizi.services.VehicleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.io.IOException;
 import java.security.Principal;

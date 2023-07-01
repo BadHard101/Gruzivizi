@@ -1,11 +1,11 @@
-package com.example.buysell.controllers;
+package com.example.gruzivizi.controllers;
 
-import com.example.buysell.models.Order;
-import com.example.buysell.models.enums.Status;
-import com.example.buysell.repositories.OrderRepository;
-import com.example.buysell.services.OrderService;
-import com.example.buysell.services.UserService;
-import com.example.buysell.services.VehicleService;
+import com.example.gruzivizi.models.Order;
+import com.example.gruzivizi.models.enums.Status;
+import com.example.gruzivizi.repositories.OrderRepository;
+import com.example.gruzivizi.services.OrderService;
+import com.example.gruzivizi.services.UserService;
+import com.example.gruzivizi.services.VehicleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;

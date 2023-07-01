@@ -1,14 +1,12 @@
-package com.example.buysell.models;
+package com.example.gruzivizi.models;
 
-import com.example.buysell.models.enums.Role;
-import com.example.buysell.models.enums.Status;
+import com.example.gruzivizi.models.enums.Status;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 

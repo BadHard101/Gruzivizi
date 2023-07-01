@@ -1,7 +1,7 @@
-package com.example.buysell.services;
+package com.example.gruzivizi.services;
 
-import com.example.buysell.models.Vehicle;
-import com.example.buysell.repositories.VehicleRepository;
+import com.example.gruzivizi.models.Vehicle;
+import com.example.gruzivizi.repositories.VehicleRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

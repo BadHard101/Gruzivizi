@@ -1,22 +1,19 @@
-package com.example.buysell.services;
+package com.example.gruzivizi.services;
 
-import com.example.buysell.models.Image;
-import com.example.buysell.models.Order;
-import com.example.buysell.models.User;
-import com.example.buysell.models.enums.Role;
-import com.example.buysell.models.enums.Status;
-import com.example.buysell.repositories.OrderRepository;
-import com.example.buysell.repositories.UserRepository;
+import com.example.gruzivizi.models.Image;
+import com.example.gruzivizi.models.Order;
+import com.example.gruzivizi.models.User;
+import com.example.gruzivizi.models.enums.Status;
+import com.example.gruzivizi.repositories.OrderRepository;
+import com.example.gruzivizi.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.aspectj.weaver.ast.Or;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.security.Principal;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 @Slf4j

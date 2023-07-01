@@ -1,7 +1,7 @@
-package com.example.buysell.controllers;
+package com.example.gruzivizi.controllers;
 
-import com.example.buysell.models.Order;
-import com.example.buysell.services.OrderService;
+import com.example.gruzivizi.models.Order;
+import com.example.gruzivizi.services.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.security.Principal;
