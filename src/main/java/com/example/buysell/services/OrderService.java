@@ -15,10 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.security.Principal;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -67,7 +64,7 @@ public class OrderService {
         return orderRepository.findById(id).orElse(null);
     }
 
-    public void changeOrderStatus(Order order, Map<String, String> form) {
+    /*public void changeOrderStatus(Order order, Map<String, String> form) {
         Set<String> status = Arrays.stream(Status.values())
                 .map(Status::name)
                 .collect(Collectors.toSet());
@@ -76,6 +73,13 @@ public class OrderService {
             if (status.contains(key)) {
                 order.getStatus().add(Status.valueOf(key));
             }
+        }
+        orderRepository.save(order);
+    }*/
+
+    public void changeOrderStatus(Order order, String status) {
+        if (status != null && !status.isEmpty()) {
+            order.setStatus(Status.valueOf(status));
         }
         orderRepository.save(order);
     }

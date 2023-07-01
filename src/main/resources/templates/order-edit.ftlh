@@ -9,7 +9,7 @@
 <form action="/admin/order/edit" method="post">
     <#list status as st>
         <div>
-            <label><input type="checkbox" name="${st}" ${order.status?seq_contains(st)?string("checked", "")}>${st}</label>
+            <label><input type="radio" name="orderStatus" value="${st}" ${order.status?seq_contains(st)?string("checked", "")}>${st}</label>
         </div>
     </#list>
     <input type="hidden" value="${order.id}" name="orderId">

@@ -88,8 +88,8 @@ public class AdminController {
     }
 
     @PostMapping("/admin/order/edit")
-    public String orderEdit(@RequestParam("orderId") Order order, @RequestParam Map<String, String> form) {
-        orderService.changeOrderStatus(order, form);
+    public String orderEdit(@RequestParam("orderId") Order order, @RequestParam("orderStatus") String status) {
+        orderService.changeOrderStatus(order, status);
         return "redirect:/admin/ordersPanel";
     }
 
