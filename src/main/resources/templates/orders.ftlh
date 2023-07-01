@@ -37,7 +37,7 @@
 <#list orders as order>
     <#if user.isEnabled() && order.user.getId() == user.getId()>
         <div>
-            <p><b>${order.id}</b> от ${order.user.name} | <a href="/order/${order.id}">Подробнее...</a></p>
+            <p>Заказ <b>${order.id}</b> от ${order.user.name} | <a href="/order/${order.id}">Подробнее...</a></p>
         </div>
     </#if>
     <#else>

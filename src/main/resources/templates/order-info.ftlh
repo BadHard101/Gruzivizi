@@ -17,9 +17,9 @@
     <b>Email: </b> ${order.user.email}<br>
     <hr>
     <p><b>ID заказа:</b> ${order.id}</p>
-    <p><b>Откуда/Куда:</b> ${order.pointA} / ${order.pointB}</p>
-    <p><b>Параметры заказа (вес, макс. высота, макс. ширина):</b>
-        ${order.weight} тонн, ${order.height} м., ${order.width} м.</p>
+    <p><b>Откуда / Куда:</b> ${order.pointA} / ${order.pointB}</p>
+    <p><b>Параметры (вес / высота / ширина):</b>
+        ${order.weight} тонн / ${order.height} м. / ${order.width} м.</p>
     <p><b>Статус заказа:</b> <#list order.status as st>${st} </#list></p>
     <p><b>Дата заказа:</b> ${order.dateOfCreated}</p>
     <p><b>Кол-во пассажиров:</b> ${order.passengers}</p>
