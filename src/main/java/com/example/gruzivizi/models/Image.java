@@ -16,14 +16,19 @@ public class Image {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long id;
+
     @Column(name = "name")
     private String name;
+
     @Column(name = "originalFileName")
     private String originalFileName;
+
     @Column(name = "size")
     private Long size;
+
     @Column(name = "contentType")
     private String contentType;
+
     @Lob
     private byte[] bytes;
 }

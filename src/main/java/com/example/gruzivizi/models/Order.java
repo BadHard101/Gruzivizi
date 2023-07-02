@@ -22,24 +22,34 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long id;
+
     @Column(name = "width")
     private double width;
+
     @Column(name = "height")
     private double height;
+
     @Column(name = "weight")
     private double weight;
+
     @Column(name = "point_A")
     private String pointA;
+
     @Column(name = "point_B")
     private String pointB;
+
     @Column(name = "passengers")
     private int passengers;
+
     @Column(name = "hydroboard")
     private boolean hydroboard;
+
     @Column(name = "thermal_protection")
     private boolean thermalProtection;
+
     @Column(name = "carrier_id")
     private Long carrierId;
+
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "order_vehicle",
