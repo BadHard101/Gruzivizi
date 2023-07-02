@@ -1,6 +1,7 @@
 package com.example.gruzivizi.controllers;
 
 import com.example.gruzivizi.models.Order;
+import com.example.gruzivizi.models.User;
 import com.example.gruzivizi.services.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -42,9 +43,14 @@ public class OrderController {
             model.addAttribute("errorMessage", "Сожалеем, но у нас нет " +
                     "подходящего транспорта для Вашего заказа.\nПожалуйста, проверьте правильность " +
                     "введенных данных в заказ или свяжитесь с нами по телефону: +7(800)255-35-35");
-            return "orders";
         }
+
+        // Добавьте эту строку, чтобы возвращаться на страницу с заказами в случае ошибки
+        model.addAttribute("orders", orderService.listOrders(null));
+        model.addAttribute("user", orderService.getUserByPrincipal(principal));
+        return "orders";
     }
+
 
     @PostMapping("/order/delete/{id}")
     public String deleteOrder(@PathVariable Long id) {

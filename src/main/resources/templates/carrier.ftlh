@@ -8,6 +8,20 @@
 <hr>
 <h2>Панель перевозчика</h2>
 <hr>
+<h4>Занятые Вами ТС</h4>
+<#list vehicles as vehicle>
+    <#if vehicle.busy && vehicle.carrierId == user.id>
+        <a href="/carrier/vehicle/${vehicle.id}">${vehicle.registerNumber} </a>
+    </#if>
+</#list>
+<hr>
+<h4>Все занятые ТС</h4>
+<#list vehicles as vehicle>
+    <#if vehicle.busy>
+        <a href="/carrier/vehicle/${vehicle.id}">${vehicle.registerNumber} </a>
+    </#if>
+</#list>
+<hr>
 <h4>Принятые заказы</h4>
 <table border="1">
     <tr>
@@ -26,7 +40,7 @@
         <th>Статус</th>-->
         <th>Подробнее</th>
         <th>Отмена</th>
-        <th>Подходящие ТС</th>
+        <th>Доступные ТС</th>
     </tr>
     <#list orders as order>
         <#if !order.isCreated() && order.carrierId == user.getId()>
@@ -53,7 +67,9 @@
                 </th>
                 <th>
                     <#list order.validateVehicles as vehicle>
-                        ${vehicle.registerNumber}
+                        <#if !vehicle.busy>
+                            <a href="/carrier/vehicle/${vehicle.id}">${vehicle.registerNumber} </a>
+                        </#if>
                     </#list>
                 </th>
             </tr>
@@ -82,6 +98,7 @@
         <th>Подробнее</th>
         <th>Принять</th>
         <th>Подходящие ТС</th>
+        <th>Доступные ТС</th>
     </tr>
     <#list orders as order>
         <#if order.isCreated()>
@@ -108,7 +125,14 @@
                 </th>
                 <th>
                     <#list order.validateVehicles as vehicle>
-                        <a href="/carrier/vehicle/${vehicle.id}">${vehicle.registerNumber} </a>
+                            <a href="/carrier/vehicle/${vehicle.id}">${vehicle.registerNumber} </a>
+                    </#list>
+                </th>
+                <th>
+                    <#list order.validateVehicles as vehicle>
+                        <#if !vehicle.busy>
+                            <a href="/carrier/vehicle/${vehicle.id}">${vehicle.registerNumber} </a>
+                        </#if>
                     </#list>
                 </th>
             </tr>

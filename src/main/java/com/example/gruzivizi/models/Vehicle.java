@@ -34,8 +34,10 @@ public class Vehicle {
     private boolean hydroboard;
     @Column(name = "thermal_protection")
     private boolean thermalProtection;
-    /*@Column(name = "busy")
-    private boolean busy;*/
+    @Column(name = "busy")
+    private boolean busy;
+    @Column(name = "carrier_id")
+    private Long carrierId = (long) 0;
 
     @ManyToMany(mappedBy = "validateVehicles")
     private List<Order> orders = new ArrayList<>();
