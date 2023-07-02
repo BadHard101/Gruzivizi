@@ -59,5 +59,8 @@
         <input type="submit" value="Добавить заказ"/>
     </form>
 </#if>
+<#if errorMessage??>
+    <h2 style="color: red">${errorMessage}</h2>
+</#if>
 </body>
 </html>

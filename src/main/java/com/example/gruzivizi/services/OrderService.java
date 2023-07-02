@@ -3,9 +3,11 @@ package com.example.gruzivizi.services;
 import com.example.gruzivizi.models.Image;
 import com.example.gruzivizi.models.Order;
 import com.example.gruzivizi.models.User;
+import com.example.gruzivizi.models.Vehicle;
 import com.example.gruzivizi.models.enums.Status;
 import com.example.gruzivizi.repositories.OrderRepository;
 import com.example.gruzivizi.repositories.UserRepository;
+import com.example.gruzivizi.repositories.VehicleRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -21,6 +23,7 @@ import java.util.*;
 public class OrderService {
     private final OrderRepository orderRepository;
     private final UserRepository userRepository;
+    private final VehicleRepository vehicleRepository;
 
     public List<Order> list() {
         return orderRepository.findAll();
@@ -79,5 +82,21 @@ public class OrderService {
             order.setStatus(Status.valueOf(status));
         }
         orderRepository.save(order);
+    }
+
+    public boolean validateOrder(Order order) {
+        for (Vehicle vehicle : vehicleRepository.findAll()) {
+            if (vehicle.getMaxWidth() >= order.getWidth()
+                    && vehicle.getMaxHeight() >= order.getHeight()
+                    && vehicle.getMaxWeight() >= order.getWeight()
+                    && vehicle.getMaxPassengers() >= order.getPassengers()
+                    && vehicle.isHydroboard() == order.isHydroboard()
+                    && vehicle.isThermalProtection() == order.isThermalProtection()
+            ) {
+                order.addVehicle(vehicle);
+            }
+        }
+        orderRepository.save(order);
+        return !order.getValidateVehicles().isEmpty();
     }
 }

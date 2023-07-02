@@ -102,7 +102,11 @@
                         <input type="submit" value="Принять">
                     </form>
                 </th>
-                <th><a href="/admin/order/edit/${order.id}">мяу</a></th>
+                <th>
+                <#list order.validateVehicles as vehicle>
+                    ${vehicle.registerNumber}
+                </#list>
+                </th>
             </tr>
         </#if>
     <#else>

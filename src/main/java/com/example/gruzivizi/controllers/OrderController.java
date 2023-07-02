@@ -34,9 +34,16 @@ public class OrderController {
     }
 
     @PostMapping("/order/create")
-    public String createOrder(Order order, Principal principal) throws IOException {
-        orderService.saveOrder(principal, order);
-        return "redirect:/";
+    public String createOrder(Model model, Order order, Principal principal) throws IOException {
+        if (orderService.validateOrder(order)) {
+            orderService.saveOrder(principal, order);
+            return "redirect:/";
+        } else {
+            model.addAttribute("errorMessage", "Сожалеем, но у нас нет " +
+                    "подходящего транспорта для Вашего заказа.\nПожалуйста, проверьте правильность " +
+                    "введенных данных в заказ или свяжитесь с нами по телефону: +7(800)255-35-35");
+            return "orders";
+        }
     }
 
     @PostMapping("/order/delete/{id}")

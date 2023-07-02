@@ -3,9 +3,12 @@ package com.example.gruzivizi.models;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.aspectj.weaver.ast.Or;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "vehicles")
@@ -33,4 +36,7 @@ public class Vehicle {
     private boolean thermalProtection;
     /*@Column(name = "busy")
     private boolean busy;*/
+
+    @ManyToMany(mappedBy = "validateVehicles")
+    private List<Order> orders = new ArrayList<>();
 }

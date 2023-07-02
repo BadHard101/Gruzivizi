@@ -7,7 +7,9 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -38,6 +40,24 @@ public class Order {
     private boolean thermalProtection;
     @Column(name = "carrier_id")
     private Long carrierId;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "order_vehicle",
+            joinColumns = @JoinColumn(name = "order_id"),
+            inverseJoinColumns = @JoinColumn(name = "vehicle_id")
+    )
+    private List<Vehicle> validateVehicles = new ArrayList<>();
+
+    public void addVehicle(Vehicle vehicle) {
+        validateVehicles.add(vehicle);
+        vehicle.getOrders().add(this);
+    }
+
+    public void removeVehicle(Vehicle vehicle) {
+        validateVehicles.remove(vehicle);
+        vehicle.getOrders().remove(this);
+    }
+
     @ElementCollection(targetClass = Status.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "order_status",
             joinColumns = @JoinColumn(name = "order_id"))
