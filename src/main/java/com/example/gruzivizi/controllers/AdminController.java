@@ -1,9 +1,12 @@
 package com.example.gruzivizi.controllers;
 
+import com.example.gruzivizi.models.Image;
 import com.example.gruzivizi.models.Order;
 import com.example.gruzivizi.models.User;
+import com.example.gruzivizi.models.Vehicle;
 import com.example.gruzivizi.models.enums.Role;
 import com.example.gruzivizi.models.enums.Status;
+import com.example.gruzivizi.repositories.UserRepository;
 import com.example.gruzivizi.services.OrderService;
 import com.example.gruzivizi.services.UserService;
 import com.example.gruzivizi.services.VehicleService;
@@ -15,7 +18,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.security.Principal;
 
 @Controller
@@ -25,6 +30,7 @@ public class AdminController {
     private final UserService userService;
     private final OrderService orderService;
     private final VehicleService vehicleService;
+    private final UserRepository userRepository;
 
     @GetMapping("/admin")
     public String admin(Model model) {
@@ -94,9 +100,10 @@ public class AdminController {
     }
 
     @GetMapping("/user/{user}")
-    public String userInfo(@PathVariable("user") User user, Model model) {
+    public String userInfo(@PathVariable("user") User user, Model model, Principal principal) {
         model.addAttribute("user", user);
         model.addAttribute("orders", user.getOrders());
+        model.addAttribute("admin", orderService.getUserByPrincipal(principal));
         return "user-info";
     }
 
@@ -107,4 +114,26 @@ public class AdminController {
         return "vehicle-info";
     }
 
+    @PostMapping("/user/photo/update/{id}")
+    public String photoUpdate(@RequestParam("file1") MultipartFile file1, @PathVariable("id") Long id, Model model, Principal principal) throws IOException {
+        Image image1;
+        User user = userRepository.getById(id);
+        if (file1.getSize() != 0) {
+            image1 =  toImageEntity(file1);
+            image1.setPreviewImage(true);
+            user.setAvatar(image1);
+        }
+        userRepository.save(user);
+        return userInfo(user, model, principal);
+    }
+
+    private Image toImageEntity(MultipartFile file) throws IOException {
+        Image image = new Image();
+        image.setName(file.getName());
+        image.setOriginalFileName(file.getOriginalFilename());
+        image.setContentType(file.getContentType());
+        image.setSize(file.getSize());
+        image.setBytes(file.getBytes());
+        return image;
+    }
 }

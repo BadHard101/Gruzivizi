@@ -7,9 +7,7 @@
 <h1>GruziVizi</h1>
 <hr>
 <h2>Подробная информация о ТС</h2>
-<#--<#list images as img>
-    <img src="/images/${img.id}" height="60px"/><br><br>
-</#list>-->
+<img src="/images/${vehicle.previewImageId}" height="250px"/><br><br>
 <div>
     <b>Регистрационный номер: </b> ${vehicle.registerNumber}<br>
     <b>Максимальный вес груза: </b> ${vehicle.maxWeight}<br>

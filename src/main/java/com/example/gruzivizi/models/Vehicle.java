@@ -50,4 +50,14 @@ public class Vehicle {
 
     @ManyToMany(mappedBy = "validateVehicles")
     private List<Order> orders = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY,
+            mappedBy = "vehicle")
+    private List<Image> images = new ArrayList<>();
+    private Long previewImageId;
+
+    public void addImageToVehicle(Image image) {
+        image.setVehicle(this);
+        images.add(image);
+    }
 }

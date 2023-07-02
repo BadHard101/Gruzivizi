@@ -6,6 +6,16 @@
 <body>
 <h1>GruziVizi</h1><hr>
 <h2>Пользователь ${user.name}</h2>
+<#if user.hasAvatar()>
+    <img src="/images/${user.avatar.id}" height="250px"/><br><br>
+</#if>
+<#if admin.isAdmin()>
+    <form action="/user/photo/update/${user.id}" method="post" enctype="multipart/form-data">
+        Фотография: <br><input type="file" name="file1"/><br>
+        <input type="hidden" name="_csrf" value="${_csrf.token}">
+        <input type="submit" value="Добавить"/>
+    </form>
+</#if>
 <h3>Подробная информация:</h3>
 <b>ID: </b> ${user.id}<br>
 <b>Email: </b> ${user.email}<br>

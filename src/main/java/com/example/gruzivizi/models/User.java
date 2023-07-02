@@ -55,6 +55,10 @@ public class User implements UserDetails {
 
     // security
 
+    public boolean hasAvatar() {
+        return avatar != null;
+    }
+
     public boolean isAdmin() {
         return roles.contains(Role.ROLE_ADMIN);
     }

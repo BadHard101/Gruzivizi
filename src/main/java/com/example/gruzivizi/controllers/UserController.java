@@ -63,6 +63,7 @@ public class UserController {
     public String accountInfo(Model model, Principal principal) {
         User user = orderService.getUserByPrincipal(principal);
         model.addAttribute("user", user);
+        model.addAttribute("admin", user);
         model.addAttribute("orders", user.getOrders());
         return "user-info";
     }

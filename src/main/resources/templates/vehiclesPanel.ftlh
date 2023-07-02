@@ -17,6 +17,7 @@
     Максимальное количество пассажиров: <input type="number" name="maxPassengers"/><br>
     Гидроборт: <input type="checkbox" name="hydroboard"/><br>
     Термозащита: <input type="checkbox" name="thermalProtection"/><br>
+    Фотография: <input type="file" name="file1"/><br>
     <input type="hidden" name="_csrf" value="${_csrf.token}">
     <input type="submit" value="Добавить"/>
 </form>
