@@ -32,6 +32,13 @@ public class CarrierController {
         return "carrier";
     }
 
+    @GetMapping("/carrier/vehicle/{id}")
+    public String carriersVehicles(@PathVariable("id") Long id, Model model, Principal principal) {
+        model.addAttribute("vehicle", vehicleService.getVehicleById(id));
+        model.addAttribute("user", orderService.getUserByPrincipal(principal));
+        return "vehicle-info";
+    }
+
     @PostMapping("/carrier/order/accept/{id}")
     public String acceptOrder(@PathVariable("id") Long id, Principal principal) {
         Order order = orderService.getOrderById(id);
@@ -57,5 +64,7 @@ public class CarrierController {
         }
         return "redirect:/carrier";
     }
+
+
 
 }

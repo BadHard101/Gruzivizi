@@ -108,7 +108,7 @@
                 </th>
                 <th>
                     <#list order.validateVehicles as vehicle>
-                        ${vehicle.registerNumber}
+                        <a href="/carrier/vehicle/${vehicle.id}">${vehicle.registerNumber} </a>
                     </#list>
                 </th>
             </tr>
