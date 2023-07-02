@@ -23,13 +23,15 @@
 <br>
 <table border="1">
     <tr>
-        <th>Регистрационный номер</th>
-        <th>Максимальный вес</th>
-        <th>Максимальная высота</th>
-        <th>Максимальная ширина</th>
-        <th>Максимально пассажиров</th>
+        <th>Рег. номер</th>
+        <th>Вес</th>
+        <th>Высота</th>
+        <th>Ширина</th>
+        <th>Пассажиры</th>
         <th>Гидроборт</th>
         <th>Термозащита</th>
+        <th>Кем занят</th>
+        <th>Подробнее</th>
         <th>Удаление</th>
     </tr>
     <#list vehicles as vehicle>
@@ -41,6 +43,8 @@
             <th>${vehicle.maxPassengers}</th>
             <th><#if vehicle.hydroboard>true<#else>false</#if></th>
             <th><#if vehicle.thermalProtection>true<#else>false</#if></th>
+            <th><#if vehicle.carrierId != 0>ID: ${vehicle.carrierId}<#else>Свободен</#if></th>
+            <th><a href="/admin/vehicle/${vehicle.id}">Подробнее</a></th>
             <th>
                 <form action="/admin/vehicle/delete/${vehicle.id}" method="post">
                     <input type="hidden" name="_csrf" value="${_csrf.token}">

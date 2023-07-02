@@ -79,6 +79,11 @@ public class Order {
         return false;
     }
 
+    public boolean isProcess() {
+        if (status.contains(Status.IN_PROCESS)) return true;
+        return false;
+    }
+
     @PrePersist
     private void init() {
         dateOfCreated = LocalDateTime.now();

@@ -90,6 +90,24 @@ public class CarrierController {
         return "redirect:/carrier";
     }
 
+    @PostMapping("/carrier/order/process/{id}")
+    public String processOrder(@PathVariable("id") Long id, Principal principal) {
+        Order order = orderService.getOrderById(id);
+        if (order.getStatus().contains(Status.ACCEPTED)) {
+            order.setStatus(Status.IN_PROCESS);
+            orderRepository.save(order);
+        }
+        return "redirect:/carrier";
+    }
 
+    @PostMapping("/carrier/order/decline/{id}")
+    public String declineOrder(@PathVariable("id") Long id, Principal principal) {
+        Order order = orderService.getOrderById(id);
+        if (order.getStatus().contains(Status.IN_PROCESS)) {
+            order.setStatus(Status.ACCEPTED);
+            orderRepository.save(order);
+        }
+        return "redirect:/carrier";
+    }
 
 }

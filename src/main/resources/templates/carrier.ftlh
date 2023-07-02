@@ -41,6 +41,7 @@
         <th>Подробнее</th>
         <th>Отмена</th>
         <th>Доступные ТС</th>
+        <th>Стутус</th>
     </tr>
     <#list orders as order>
         <#if !order.isCreated() && order.carrierId == user.getId()>
@@ -67,11 +68,26 @@
                 </th>
                 <th>
                     <#list order.validateVehicles as vehicle>
-                        <#if !vehicle.busy>
+                        <#if !vehicle.busy || vehicle.carrierId == user.id>
                             <a href="/carrier/vehicle/${vehicle.id}">${vehicle.registerNumber} </a>
                         </#if>
                     </#list>
                 </th>
+                <#if !order.isProcess()>
+                    <th>
+                        <form action="/carrier/order/process/${order.id}" method="post">
+                            <input type="hidden" name="_csrf" value="${_csrf.token}">
+                            <input type="submit" value="'Уже везу'">
+                        </form>
+                    </th>
+                <#else>
+                    <th>
+                    <form action="/carrier/order/decline/${order.id}" method="post">
+                        <input type="hidden" name="_csrf" value="${_csrf.token}">
+                        <input type="submit" value="Отменить">
+                    </form>
+                    </th>
+                </#if>
             </tr>
         </#if>
     <#else>

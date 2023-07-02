@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.security.Principal;
+
 @Controller
 @RequiredArgsConstructor
 @PreAuthorize("hasAuthority('ROLE_ADMIN')")
@@ -96,6 +98,13 @@ public class AdminController {
         model.addAttribute("user", user);
         model.addAttribute("orders", user.getOrders());
         return "user-info";
+    }
+
+    @GetMapping("/admin/vehicle/{id}")
+    public String carriersVehicles(@PathVariable("id") Long id, Model model, Principal principal) {
+        model.addAttribute("vehicle", vehicleService.getVehicleById(id));
+        model.addAttribute("user", orderService.getUserByPrincipal(principal));
+        return "vehicle-info";
     }
 
 }
