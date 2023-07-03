@@ -39,9 +39,8 @@ public class VehicleController {
     }*/
 
     @PostMapping("/vehicle/create")
-    public String createVehicle(@RequestParam("file1") MultipartFile file1, @RequestParam("file2") MultipartFile file2,
-                                @RequestParam("file3") MultipartFile file3, Vehicle vehicle, Principal principal) throws IOException {
-        vehicleService.saveVehicle(principal, vehicle, file1, file2, file3);
+    public String createVehicle(@RequestParam("file1") MultipartFile file1, Vehicle vehicle, Principal principal) throws IOException {
+        vehicleService.saveVehicle(principal, vehicle, file1);
         return "redirect:/admin/vehiclesPanel";
     }
 

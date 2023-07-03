@@ -22,6 +22,13 @@
     </#if>
 </#list>
 <hr>
+<h4>Все свободные ТС</h4>
+<#list vehicles as vehicle>
+    <#if !vehicle.busy>
+        <a href="/carrier/vehicle/${vehicle.id}">${vehicle.registerNumber} </a>
+    </#if>
+</#list>
+<hr>
 <h4>Принятые заказы</h4>
 <table border="1">
     <tr>

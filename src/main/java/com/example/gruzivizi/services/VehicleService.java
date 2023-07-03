@@ -33,22 +33,12 @@ public class VehicleService {
         vehicleRepository.save(vehicle);
     }*/
 
-    public void saveVehicle(Principal principal, Vehicle vehicle, MultipartFile file1, MultipartFile file2, MultipartFile file3) throws IOException {
+    public void saveVehicle(Principal principal, Vehicle vehicle, MultipartFile file1) throws IOException {
         Image image1;
-        Image image2;
-        Image image3;
         if (file1.getSize() != 0) {
             image1 = toImageEntity(file1);
             image1.setPreviewImage(true);
             vehicle.addImageToVehicle(image1);
-        }
-        if (file2.getSize() != 0) {
-            image2 = toImageEntity(file2);
-            vehicle.addImageToVehicle(image2);
-        }
-        if (file3.getSize() != 0) {
-            image3 = toImageEntity(file3);
-            vehicle.addImageToVehicle(image3);
         }
         log.info("Saving new Vehicle. ID: {}", vehicle.getId());
         Vehicle vehicleFromDb = vehicleRepository.save(vehicle);
