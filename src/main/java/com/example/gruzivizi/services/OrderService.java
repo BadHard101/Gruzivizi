@@ -90,8 +90,8 @@ public class OrderService {
                     && vehicle.getMaxHeight() >= order.getHeight()
                     && vehicle.getMaxWeight() >= order.getWeight()
                     && vehicle.getMaxPassengers() >= order.getPassengers()
-                    && vehicle.isHydroboard() == order.isHydroboard()
-                    && vehicle.isThermalProtection() == order.isThermalProtection()
+                    && (vehicle.isHydroboard() == order.isHydroboard() || vehicle.isHydroboard())
+                    && (vehicle.isThermalProtection() == order.isThermalProtection() || vehicle.isThermalProtection())
             ) {
                 order.addVehicle(vehicle);
             }

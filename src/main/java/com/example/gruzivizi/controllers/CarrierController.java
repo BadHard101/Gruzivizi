@@ -22,7 +22,6 @@ import java.security.Principal;
 @RequiredArgsConstructor
 @PreAuthorize("hasAuthority('ROLE_CARRIER')")
 public class CarrierController {
-    private final UserService userService;
     private final OrderService orderService;
     private final OrderRepository orderRepository;
     private final VehicleRepository vehicleRepository;

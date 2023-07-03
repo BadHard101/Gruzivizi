@@ -74,7 +74,7 @@
                     </form>
                 </th>
                 <th>
-                    <#list order.validateVehicles as vehicle>
+                    <#list order.getValidateVehicles() as vehicle>
                         <#if !vehicle.busy || vehicle.carrierId == user.id>
                             <a href="/carrier/vehicle/${vehicle.id}">${vehicle.registerNumber} </a>
                         </#if>
@@ -147,15 +147,19 @@
                     </form>
                 </th>
                 <th>
-                    <#list order.validateVehicles as vehicle>
+                    <#list order.getValidateVehicles() as vehicle>
                             <a href="/carrier/vehicle/${vehicle.id}">${vehicle.registerNumber} </a>
+                    <#else>
+                        Нет
                     </#list>
                 </th>
                 <th>
-                    <#list order.validateVehicles as vehicle>
+                    <#list order.getValidateVehicles() as vehicle>
                         <#if !vehicle.busy>
                             <a href="/carrier/vehicle/${vehicle.id}">${vehicle.registerNumber} </a>
                         </#if>
+                    <#else>
+                        Нет
                     </#list>
                 </th>
             </tr>
