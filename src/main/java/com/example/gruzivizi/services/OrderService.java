@@ -84,7 +84,7 @@ public class OrderService {
         orderRepository.save(order);
     }
 
-    public boolean validateOrder(Order order) {
+    public boolean validateOrder(Principal principal, Order order) {
         for (Vehicle vehicle : vehicleRepository.findAll()) {
             if (vehicle.getMaxWidth() >= order.getWidth()
                     && vehicle.getMaxHeight() >= order.getHeight()
@@ -96,6 +96,7 @@ public class OrderService {
                 order.addVehicle(vehicle);
             }
         }
+        order.setUser(getUserByPrincipal(principal));
         orderRepository.save(order);
         return !order.getValidateVehicles().isEmpty();
     }

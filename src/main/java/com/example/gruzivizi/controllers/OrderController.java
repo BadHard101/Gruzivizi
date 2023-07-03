@@ -36,7 +36,7 @@ public class OrderController {
 
     @PostMapping("/order/create")
     public String createOrder(Model model, Order order, Principal principal) throws IOException {
-        if (orderService.validateOrder(order)) {
+        if (orderService.validateOrder(principal, order)) {
             orderService.saveOrder(principal, order);
             return "redirect:/";
         } else {
