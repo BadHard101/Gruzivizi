@@ -11,8 +11,7 @@
     Поиск пользователя по номеру телефона: <input type="text" name="tel">
     <input type="submit" value="Поиск"/>
 </form>
-<hr>
-<h3>Список всех пользователей</h3>
+<br>
 <table border="1">
     <tr>
         <th>ID</th>

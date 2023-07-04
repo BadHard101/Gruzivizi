@@ -6,7 +6,12 @@
 <body>
 <h1>GruziVizi</h1>
 <hr>
-<h4>Панель администратора / Заказы</h4>
+<h2>Панель администратора / Заказы</h2>
+<form action="/admin/ordersPanel" method="get">
+    Поиск заказа по id: <input type="number" name="id">
+    <input type="submit" value="Поиск"/>
+</form>
+<br>
 <table border="1">
     <tr>
         <th>ID</th>

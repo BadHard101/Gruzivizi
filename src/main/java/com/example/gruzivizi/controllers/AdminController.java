@@ -44,14 +44,14 @@ public class AdminController {
     }
 
     @GetMapping("/admin/ordersPanel")
-    public String ordersPanel(Model model) {
-        model.addAttribute("orders", orderService.list());
+    public String ordersPanel(@RequestParam(name = "id", required = false) Long id, Model model) {
+        model.addAttribute("orders", orderService.listOrders(id));
         return "ordersPanel";
     }
 
     @GetMapping("/admin/vehiclesPanel")
-    public String vehiclesPanel(Model model) {
-        model.addAttribute("vehicles", vehicleService.list());
+    public String vehiclesPanel(@RequestParam(name = "registrationNumber", required = false) String registrationNumber, Model model) {
+        model.addAttribute("vehicles", vehicleService.listVehicles(registrationNumber));
         return "vehiclesPanel";
     }
 

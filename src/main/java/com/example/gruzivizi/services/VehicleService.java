@@ -22,8 +22,9 @@ public class VehicleService {
         return vehicleRepository.findAll();
     }
 
-    public List<Vehicle> listVehicles(Long id) {
-        if (id != null) return vehicleRepository.findVehicleById(id);
+    public List<Vehicle> listVehicles(String registrationNumber) {
+        if (registrationNumber != null)
+            return vehicleRepository.findVehicleByRegisterNumber(registrationNumber);
         return vehicleRepository.findAll();
     }
 
