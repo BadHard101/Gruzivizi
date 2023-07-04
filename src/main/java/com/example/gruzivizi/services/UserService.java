@@ -1,6 +1,5 @@
 package com.example.gruzivizi.services;
 
-import com.example.gruzivizi.models.Order;
 import com.example.gruzivizi.models.User;
 import com.example.gruzivizi.models.enums.Role;
 import com.example.gruzivizi.repositories.UserRepository;
