@@ -6,22 +6,23 @@
 <body>
 <h1>GruziVizi</h1>
 <hr>
-<h4>Панель администратора / Транспорт</h4>
-
+<h2>Панель администратора / Транспорт</h2>
+<hr>
 <h3>Добавить ТС</h3>
 <form action="/vehicle/create" method="post" enctype="multipart/form-data">
-    Регистрационный номер: <input type="text" name="registerNumber"/><br>
-    Максимальный вес груза: <input type="number" step="0.1" name="maxWidth"/><br>
-    Максимальная высота груза: <input type="number" step="0.1" name="maxHeight"/><br>
-    Максимальная ширина груза: <input type="number" step="0.1" name="maxWeight"/><br>
-    Максимальное количество пассажиров: <input type="number" name="maxPassengers"/><br>
-    Гидроборт: <input type="checkbox" name="hydroboard"/><br>
-    Термозащита: <input type="checkbox" name="thermalProtection"/><br>
-    Фотография: <input type="file" name="file1"/><br>
+    Фотография: <input type="file" name="file1"/><br><br>
+    Регистрационный номер: <input type="text" name="registerNumber"/><br><br>
+    Максимальный вес груза: <input type="number" step="0.1" name="maxWidth"/><br><br>
+    Максимальная высота груза: <input type="number" step="0.1" name="maxHeight"/><br><br>
+    Максимальная ширина груза: <input type="number" step="0.1" name="maxWeight"/><br><br>
+    Максимальное количество пассажиров: <input type="number" name="maxPassengers"/><br><br>
+    Гидроборт: <input type="checkbox" name="hydroboard"/><br><br>
+    Термозащита: <input type="checkbox" name="thermalProtection"/><br><br>
     <input type="hidden" name="_csrf" value="${_csrf.token}">
     <input type="submit" value="Добавить"/>
 </form>
-<br>
+<hr>
+<h3>Список всех ТС</h3>
 <table border="1">
     <tr>
         <th>Рег. номер</th>

@@ -1,5 +1,6 @@
 package com.example.gruzivizi.services;
 
+import com.example.gruzivizi.models.Order;
 import com.example.gruzivizi.models.User;
 import com.example.gruzivizi.models.enums.Role;
 import com.example.gruzivizi.repositories.UserRepository;
@@ -34,6 +35,11 @@ public class UserService {
     }
 
     public List<User> list() {
+        return userRepository.findAll();
+    }
+
+    public List<User> listUsers(String tel) {
+        if (tel != null) return userRepository.findByPhoneNumber(tel);
         return userRepository.findAll();
     }
 

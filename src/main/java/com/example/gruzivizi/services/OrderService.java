@@ -86,7 +86,8 @@ public class OrderService {
 
     public boolean validateOrder(Principal principal, Order order) {
         for (Vehicle vehicle : vehicleRepository.findAll()) {
-            if (vehicle.getMaxWidth() >= order.getWidth()
+            if (!vehicle.isBusy()
+                    && vehicle.getMaxWidth() >= order.getWidth()
                     && vehicle.getMaxHeight() >= order.getHeight()
                     && vehicle.getMaxWeight() >= order.getWeight()
                     && vehicle.getMaxPassengers() >= order.getPassengers()

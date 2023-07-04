@@ -6,9 +6,16 @@
 <body>
 <h1>GruziVizi</h1>
 <hr>
-<h4>Панель администратора / Пользователи</h4>
+<h2>Панель администратора / Пользователи</h2>
+<form action="/admin/usersPanel" method="get">
+    Поиск пользователя по номеру телефона: <input type="text" name="tel">
+    <input type="submit" value="Поиск"/>
+</form>
+<hr>
+<h3>Список всех пользователей</h3>
 <table border="1">
     <tr>
+        <th>ID</th>
         <th>Email</th>
         <th>Номер телефона</th>
         <th>Активность</th>
@@ -19,6 +26,7 @@
     </tr>
     <#list users as user>
         <tr>
+            <th>${user.id}</th>
             <th>${user.email}</th>
             <th>${user.phoneNumber}</th>
             <th><#if user.active>true<#else>false</#if></th>

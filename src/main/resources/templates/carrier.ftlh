@@ -76,7 +76,7 @@
                 <th>
                     <#list order.getValidateVehicles() as vehicle>
                         <#if !vehicle.busy || vehicle.carrierId == user.id>
-                            <a href="/carrier/vehicle/${vehicle.id}">${vehicle.registerNumber} </a>
+                            / <a href="/carrier/vehicle/${vehicle.id}">${vehicle.registerNumber} </a>
                         </#if>
                     </#list>
                 </th>
@@ -120,8 +120,8 @@
         <th>Статус</th>-->
         <th>Подробнее</th>
         <th>Принять</th>
-        <th>Подходящие ТС</th>
         <th>Доступные ТС</th>
+        <th>Подходящие ТС</th>
     </tr>
     <#list orders as order>
         <#if order.isCreated()>
@@ -148,18 +148,18 @@
                 </th>
                 <th>
                     <#list order.getValidateVehicles() as vehicle>
-                            <a href="/carrier/vehicle/${vehicle.id}">${vehicle.registerNumber} </a>
-                    <#else>
-                        Нет
+                        <#if !vehicle.busy>
+                            / <a href="/carrier/vehicle/${vehicle.id}">${vehicle.registerNumber} </a>
+                        </#if>
+                    <#--<#else>
+                        Нет-->
                     </#list>
                 </th>
                 <th>
                     <#list order.getValidateVehicles() as vehicle>
-                        <#if !vehicle.busy>
-                            <a href="/carrier/vehicle/${vehicle.id}">${vehicle.registerNumber} </a>
-                        </#if>
-                    <#else>
-                        Нет
+                        / <a href="/carrier/vehicle/${vehicle.id}">${vehicle.registerNumber} </a>
+                    <#--<#else>
+                        Нет-->
                     </#list>
                 </th>
             </tr>

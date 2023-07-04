@@ -25,10 +25,14 @@
     <p><b>Кол-во пассажиров:</b> ${order.passengers}</p>
     <p><b>Гидроборт:</b> <#if order.hydroboard>Есть<#else>Нет</#if></p>
     <p><b>Термозащита:</b> <#if order.thermalProtection>Есть<#else>Нет</#if></p>
-    <p><b>Подходящие ТС:</b>
-        <#list order.getValidateVehicles() as vehicle>
-            ${vehicle.registerNumber}
-        </#list></p>
+    <#if user.isCarrier()>
+        <p><b>Подходящие ТС:</b>
+            <#list order.getValidateVehicles() as vehicle>
+                ${vehicle.registerNumber}
+            <#else>
+                Нет
+            </#list></p>
+    </#if>
 
     <#if user.isAdmin()>
         <a href="/account">Подробнее о пользователе</a><br><br>

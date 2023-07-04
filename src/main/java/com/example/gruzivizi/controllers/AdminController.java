@@ -38,8 +38,8 @@ public class AdminController {
     }
 
     @GetMapping("/admin/usersPanel")
-    public String usersPanel(Model model) {
-        model.addAttribute("users", userService.list());
+    public String usersPanel(@RequestParam(name = "tel", required = false) String tel, Model model) {
+        model.addAttribute("users", userService.listUsers(tel));
         return "usersPanel";
     }
 
