@@ -98,7 +98,8 @@ public class OrderService {
             }
         }
         order.setUser(getUserByPrincipal(principal));
-        orderRepository.save(order);
+        if (!order.getValidateVehicles().isEmpty())
+            orderRepository.save(order);
         return !order.getValidateVehicles().isEmpty();
     }
 }
