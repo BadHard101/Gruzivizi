@@ -121,7 +121,7 @@
         <th>Подробнее</th>
         <th>Принять</th>
         <th>Доступные ТС</th>
-        <th>Подходящие ТС</th>
+        <th>Все подходящие ТС</th>
     </tr>
     <#list orders as order>
         <#if order.isCreated()>

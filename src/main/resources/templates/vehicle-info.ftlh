@@ -17,12 +17,14 @@
     <b>Гидроборт: </b> <#if vehicle.hydroboard>Есть<#else>Нет</#if><br>
     <b>Термозащита: </b> <#if vehicle.thermalProtection>Есть<#else>Нет</#if><br>
     <#if user.isCarrier() && !vehicle.busy>
+        <br>
         <form action="/carrier/vehicle/accept/${vehicle.id}" method="post">
             <input type="hidden" name="_csrf" value="${_csrf.token}">
             <input type="submit" value="Занять ТС">
         </form>
     </#if>
     <#if user.isCarrier() && vehicle.busy && vehicle.carrierId == user.id>
+        <br>
         <form action="/carrier/vehicle/decline/${vehicle.id}" method="post">
             <input type="hidden" name="_csrf" value="${_csrf.token}">
             <input type="submit" value="Освободить ТС">

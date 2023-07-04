@@ -11,11 +11,13 @@
 </#if>
 <#if admin.isAdmin()>
     <form action="/user/photo/update/${user.id}" method="post" enctype="multipart/form-data">
-        Фотография: <br><input type="file" name="file1"/><br>
+        <b>Фотография: </b><br><br>
+        <input type="file" name="file1"/><br><br>
         <input type="hidden" name="_csrf" value="${_csrf.token}">
-        <input type="submit" value="Добавить"/>
+        <input type="submit" value="Изменить"/>
     </form>
 </#if>
+<hr>
 <h3>Подробная информация:</h3>
 <b>ID: </b> ${user.id}<br>
 <b>Email: </b> ${user.email}<br>
@@ -24,6 +26,7 @@
 <hr>
 <h2>Заказы пользователя ${user.name}:</h2>
 <#list orders as order>
+    <hr>
     <div>
         <p><b>Дата заказа:</b> ${order.dateOfCreated}</p>
         <p><b>Откуда/Куда:</b> ${order.pointA} / ${order.pointB}</p>
@@ -36,7 +39,6 @@
         <p><b>Термозащита:</b> <#if order.thermalProtection>Есть<#else>Нет</#if></p>-->
         <a href="/order/${order.id}">Подробнее...</a>
     </div>
-    <hr>
 <#else>
     <h3>Заказов нет</h3>
 </#list>
