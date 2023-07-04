@@ -3,6 +3,7 @@ package com.example.gruzivizi.controllers;
 import com.example.gruzivizi.models.Vehicle;
 import com.example.gruzivizi.services.VehicleService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,7 @@ import java.security.Principal;
 
 @Controller
 @RequiredArgsConstructor
+@PreAuthorize("hasAuthority('ROLE_ADMIN')")
 public class VehicleController {
     private final VehicleService vehicleService;
 
