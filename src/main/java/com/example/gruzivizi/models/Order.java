@@ -94,6 +94,11 @@ public class Order {
         return false;
     }
 
+    public boolean isCompleted() {
+        if (status.contains(Status.COMPLETED)) return true;
+        return false;
+    }
+
     @PrePersist
     private void init() {
         dateOfCreated = LocalDateTime.now();

@@ -56,11 +56,12 @@
             <th>Отмена</th>
             <th>Доступные ТС</th>
             <th>Статус "Везу"</th>
+            <th>Статус "Выполнен"</th>
         </tr>
         </thead>
         <tbody>
         <#list orders as order>
-            <#if !order.isCreated() && order.carrierId == user.getId()>
+            <#if !order.isCompleted() && !order.isCreated() && order.carrierId == user.getId()>
                 <tr>
                     <td>${order.user.name}</td>
                     <td>${order.user.phoneNumber}</td>
@@ -91,6 +92,14 @@
                             <form action="/carrier/order/decline/${order.id}" method="post">
                                 <input type="hidden" name="_csrf" value="${_csrf.token}">
                                 <input type="submit" value="Отменить" class="btn btn-danger">
+                            </form>
+                        </#if>
+                    </td>
+                    <td>
+                        <#if order.isProcess()>
+                            <form action="/carrier/order/complete/${order.id}" method="post">
+                                <input type="hidden" name="_csrf" value="${_csrf.token}">
+                                <input type="submit" value="Выполнен" class="btn btn-success">
                             </form>
                         </#if>
                     </td>

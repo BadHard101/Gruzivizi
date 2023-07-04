@@ -61,14 +61,20 @@ public class CarrierController {
     }
 
     @PostMapping("/carrier/order/process/{id}")
-    public String processOrder(@PathVariable("id") Long id, Principal principal) {
-        carrierService.processOrder(id, principal);
+    public String processOrder(@PathVariable("id") Long id) {
+        carrierService.processOrder(id);
         return "redirect:/carrier";
     }
 
     @PostMapping("/carrier/order/decline/{id}")
-    public String declineOrder(@PathVariable("id") Long id, Principal principal) {
-        carrierService.declineOrder(id, principal);
+    public String declineOrder(@PathVariable("id") Long id) {
+        carrierService.declineOrder(id);
+        return "redirect:/carrier";
+    }
+
+    @PostMapping("/carrier/order/complete/{id}")
+    public String completeOrder(@PathVariable("id") Long id) {
+        carrierService.completeOrder(id);
         return "redirect:/carrier";
     }
 

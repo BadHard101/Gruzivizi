@@ -42,7 +42,7 @@ public class CarrierService {
         }
     }
 
-    public void processOrder(Long id, Principal principal) {
+    public void processOrder(Long id) {
         Order order = orderService.getOrderById(id);
         if (order.getStatus().contains(Status.ACCEPTED)) {
             order.setStatus(Status.IN_PROCESS);
@@ -50,10 +50,18 @@ public class CarrierService {
         }
     }
 
-    public void declineOrder(Long id, Principal principal) {
+    public void declineOrder(Long id) {
         Order order = orderService.getOrderById(id);
         if (order.getStatus().contains(Status.IN_PROCESS)) {
             order.setStatus(Status.ACCEPTED);
+            orderRepository.save(order);
+        }
+    }
+
+    public void completeOrder(Long id) {
+        Order order = orderService.getOrderById(id);
+        if (order.getStatus().contains(Status.IN_PROCESS)) {
+            order.setStatus(Status.COMPLETED);
             orderRepository.save(order);
         }
     }
