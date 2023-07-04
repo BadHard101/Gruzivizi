@@ -3,6 +3,11 @@
 <head>
     <title>GruziVizi</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            padding: 1% 5% 2% 5%;
+        }
+    </style>
 </head>
 <body>
 <h1 class="mt-3">GruziVizi</h1>

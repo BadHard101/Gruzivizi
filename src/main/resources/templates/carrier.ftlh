@@ -107,7 +107,7 @@
             </#if>
         <#else>
             <tr>
-                <td colspan="9"><h3>Заказов нет</h3></td>
+                <td colspan="10"><h3>Заказов нет</h3></td>
             </tr>
         </#list>
         </tbody>

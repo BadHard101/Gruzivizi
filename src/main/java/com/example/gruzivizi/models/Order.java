@@ -48,7 +48,7 @@ public class Order {
     private boolean thermalProtection;
 
     @Column(name = "carrier_id")
-    private Long carrierId;
+    private Long carrierId = (long) 0;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
