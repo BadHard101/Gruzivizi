@@ -17,6 +17,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class VehicleService {
     private final VehicleRepository vehicleRepository;
+    private final OrderService orderService;
 
     public List<Vehicle> list() {
         return vehicleRepository.findAll();
@@ -64,5 +65,6 @@ public class VehicleService {
     public Vehicle getVehicleById(Long id) {
         return vehicleRepository.findById(id).orElse(null);
     }
+
 
 }

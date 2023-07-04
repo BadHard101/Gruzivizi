@@ -19,24 +19,12 @@ import java.security.Principal;
 public class VehicleController {
     private final VehicleService vehicleService;
 
-    /*@GetMapping("/")
-    public String vehicles(@RequestParam(name = "id", required = false) Long id, Model model) {
-        model.addAttribute("vehicles", vehicleService.listVehicles(id));
-        return "vehicles";
-    }*/
-
     @GetMapping("/vehicle/{id}")
     public String vehicleInfo(@PathVariable Long id, Model model) {
         Vehicle vehicle = vehicleService.getVehicleById(id);
         model.addAttribute("vehicle", vehicle);
         return "vehicle-info";
     }
-
-    /*@PostMapping("/vehicle/create")
-    public String createVehicle(Vehicle vehicle, Principal principal) throws IOException {
-        vehicleService.saveVehicle(principal, vehicle);
-        return "redirect:/admin/vehiclesPanel";
-    }*/
 
     @PostMapping("/vehicle/create")
     public String createVehicle(@RequestParam("file1") MultipartFile file1, Vehicle vehicle, Principal principal) throws IOException {

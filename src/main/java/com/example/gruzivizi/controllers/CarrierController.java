@@ -1,12 +1,7 @@
 package com.example.gruzivizi.controllers;
 
-import com.example.gruzivizi.models.Order;
-import com.example.gruzivizi.models.Vehicle;
-import com.example.gruzivizi.models.enums.Status;
-import com.example.gruzivizi.repositories.OrderRepository;
-import com.example.gruzivizi.repositories.VehicleRepository;
+import com.example.gruzivizi.services.CarrierService;
 import com.example.gruzivizi.services.OrderService;
-import com.example.gruzivizi.services.UserService;
 import com.example.gruzivizi.services.VehicleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -23,9 +18,8 @@ import java.security.Principal;
 @PreAuthorize("hasAuthority('ROLE_CARRIER')")
 public class CarrierController {
     private final OrderService orderService;
-    private final OrderRepository orderRepository;
-    private final VehicleRepository vehicleRepository;
     private final VehicleService vehicleService;
+    private final CarrierService carrierService;
 
     @GetMapping("/carrier")
     public String carriersPanel(Model model, Principal principal) {
@@ -44,68 +38,37 @@ public class CarrierController {
 
     @PostMapping("/carrier/vehicle/accept/{id}")
     public String acceptVehicle(@PathVariable("id") Long id, Principal principal) {
-        Vehicle vehicle = vehicleService.getVehicleById(id);
-        if (!vehicle.isBusy()) {
-            vehicle.setBusy(true);
-            vehicle.setCarrierId(orderService.getUserByPrincipal(principal).getId());
-            vehicleRepository.save(vehicle);
-        }
+        carrierService.takeVehicle(id, principal);
         return "redirect:/carrier";
     }
 
     @PostMapping("/carrier/vehicle/decline/{id}")
     public String declineVehicle(@PathVariable("id") Long id, Principal principal) {
-        Vehicle vehicle = vehicleService.getVehicleById(id);
-        vehicle.setBusy(false);
-        vehicle.setCarrierId((long) 0);
-        vehicleRepository.save(vehicle);
+        carrierService.releaseVehicle(id, principal);
         return "redirect:/carrier";
     }
 
-
     @PostMapping("/carrier/order/accept/{id}")
     public String acceptOrder(@PathVariable("id") Long id, Principal principal) {
-        Order order = orderService.getOrderById(id);
-        if (order.getStatus().contains(Status.CREATED)) {
-            order.setStatus(Status.ACCEPTED);
-            order.setCarrierId(
-                    orderService.getUserByPrincipal(principal).getId()
-            );
-            orderRepository.save(order);
-        }
+        carrierService.acceptOrder(id, principal);
         return "redirect:/carrier";
     }
 
     @PostMapping("/carrier/order/cancel/{id}")
     public String cancelOrder(@PathVariable("id") Long id, Principal principal) {
-        Order order = orderService.getOrderById(id);
-        if (order.getCarrierId() != null &&
-                order.getCarrierId().equals(
-                        orderService.getUserByPrincipal(principal).getId())) {
-            order.setStatus(Status.CREATED);
-            order.setCarrierId(null);
-            orderRepository.save(order);
-        }
+        carrierService.cancelOrder(id, principal);
         return "redirect:/carrier";
     }
 
     @PostMapping("/carrier/order/process/{id}")
     public String processOrder(@PathVariable("id") Long id, Principal principal) {
-        Order order = orderService.getOrderById(id);
-        if (order.getStatus().contains(Status.ACCEPTED)) {
-            order.setStatus(Status.IN_PROCESS);
-            orderRepository.save(order);
-        }
+        carrierService.processOrder(id, principal);
         return "redirect:/carrier";
     }
 
     @PostMapping("/carrier/order/decline/{id}")
     public String declineOrder(@PathVariable("id") Long id, Principal principal) {
-        Order order = orderService.getOrderById(id);
-        if (order.getStatus().contains(Status.IN_PROCESS)) {
-            order.setStatus(Status.ACCEPTED);
-            orderRepository.save(order);
-        }
+        carrierService.declineOrder(id, principal);
         return "redirect:/carrier";
     }
 

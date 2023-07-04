@@ -3,7 +3,6 @@ package com.example.gruzivizi.controllers;
 import com.example.gruzivizi.models.Image;
 import com.example.gruzivizi.models.Order;
 import com.example.gruzivizi.models.User;
-import com.example.gruzivizi.models.Vehicle;
 import com.example.gruzivizi.models.enums.Role;
 import com.example.gruzivizi.models.enums.Status;
 import com.example.gruzivizi.repositories.UserRepository;

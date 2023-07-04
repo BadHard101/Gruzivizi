@@ -1,7 +1,6 @@
 package com.example.gruzivizi.controllers;
 
 import com.example.gruzivizi.models.Order;
-import com.example.gruzivizi.models.User;
 import com.example.gruzivizi.services.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
