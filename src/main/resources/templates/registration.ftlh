@@ -2,17 +2,31 @@
 <html>
 <head>
     <title>GruziVizi</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
 <body>
-<h1>GruziVizi</h1><hr>
+<h1 class="mt-3">GruziVizi</h1>
+<hr>
 <h4>Регистрация</h4>
 <form action="/registration" method="post">
-    Имя пользователя: <input type="text" name="name"><br><br>
-    Эл. почта: <input type="email" name="email"><br><br>
-    Номер телефона: <input type="text" name="phoneNumber"><br><br>
-    Пароль: <input type="password" name="password"><br><br>
+    <div class="mb-3">
+        <label for="username" class="form-label">Имя пользователя:</label>
+        <input type="text" id="username" name="name" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label for="email" class="form-label">Эл. почта:</label>
+        <input type="email" id="email" name="email" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label for="phoneNumber" class="form-label">Номер телефона:</label>
+        <input type="text" id="phoneNumber" name="phoneNumber" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label for="password" class="form-label">Пароль:</label>
+        <input type="password" id="password" name="password" class="form-control">
+    </div>
     <input type="hidden" name="_csrf" value="${_csrf.token}">
-    <input type="submit" value="Зарегистрироваться"/>
+    <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
 </form>
 <#if errorMessage??>
     <h2 style="color: red">${errorMessage}</h2>

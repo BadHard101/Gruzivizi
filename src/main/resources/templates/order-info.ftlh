@@ -2,19 +2,18 @@
 <html>
 <head>
     <title>GruziVizi</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 </head>
 <body>
-<h1>GruziVizi</h1><hr>
-<h2>Подробная информация о заказе</h2>
-<#--<#list images as img>
-    <img src="/images/${img.id}" height="60px"/><br><br>
-</#list>-->
-
-<#--<b>Автор: </b><a href="/account">${order.user.name}</a><br>-->
-<div>
-    <b>Заказчик: </b> ${order.user.name}<br>
-    <b>Номер телефона: </b> ${order.user.phoneNumber}<br>
-    <b>Email: </b> ${order.user.email}<br>
+<div class="container">
+    <h1 class="mt-4">GruziVizi</h1>
+    <hr>
+    <h2 class="mt-4">Подробная информация о заказе</h2>
+    <div class="mb-4">
+        <b>Заказчик: </b> ${order.user.name}<br>
+        <b>Номер телефона: </b> ${order.user.phoneNumber}<br>
+        <b>Email: </b> ${order.user.email}<br>
+    </div>
     <hr>
     <p><b>ID заказа:</b> ${order.id}</p>
     <p><b>Откуда / Куда:</b> ${order.pointA} / ${order.pointB}</p>
@@ -25,6 +24,7 @@
     <p><b>Кол-во пассажиров:</b> ${order.passengers}</p>
     <p><b>Гидроборт:</b> <#if order.hydroboard>Есть<#else>Нет</#if></p>
     <p><b>Термозащита:</b> <#if order.thermalProtection>Есть<#else>Нет</#if></p>
+
     <#if user.isCarrier()>
         <p><b>Подходящие ТС:</b>
             <#list order.getValidateVehicles() as vehicle>

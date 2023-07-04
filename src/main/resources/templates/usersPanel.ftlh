@@ -2,17 +2,26 @@
 <html>
 <head>
     <title>GruziVizi</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            padding: 0 5%;
+        }
+    </style>
 </head>
 <body>
-<h1>GruziVizi</h1>
+<h1 class="mt-3">GruziVizi</h1>
 <hr>
 <h2>Панель администратора / Пользователи</h2>
 <form action="/admin/usersPanel" method="get">
-    Поиск пользователя по номеру телефона: <input type="text" name="tel">
-    <input type="submit" value="Поиск"/>
+    <div class="mb-3">
+        <label class="form-label">Поиск пользователя по номеру телефона:</label>
+        <input class="form-control" type="text" name="tel">
+    </div>
+    <input type="submit" value="Поиск" class="btn btn-primary">
 </form>
 <br>
-<table border="1">
+<table class="table">
     <tr>
         <th>ID</th>
         <th>Email</th>
@@ -25,22 +34,24 @@
     </tr>
     <#list users as user>
         <tr>
-            <th>${user.id}</th>
-            <th>${user.email}</th>
-            <th>${user.phoneNumber}</th>
-            <th><#if user.active>true<#else>false</#if></th>
-            <th><#list user.roles as role>${role}<br></#list></th>
-            <th>
+            <td>${user.id}</td>
+            <td>${user.email}</td>
+            <td>${user.phoneNumber}</td>
+            <td><#if user.active>true<#else>false</#if></td>
+            <td><#list user.roles as role>${role}<br></#list></td>
+            <td>
                 <form action="/admin/user/ban/${user.id}" method="post">
                     <input type="hidden" name="_csrf" value="${_csrf.token}">
-                    <input type="submit" value="Бан">
+                    <input type="submit" value="Бан" class="btn btn-danger">
                 </form>
-            </th>
-            <th><a href="/admin/user/edit/${user.id}">Редактировние</a></th>
-            <th><a href="/user/${user.id}">Подробная информация</a></th>
+            </td>
+            <td><a href="/admin/user/edit/${user.id}" class="btn btn-primary">Редактирование</a></td>
+            <td><a href="/user/${user.id}" class="btn btn-primary">Подробная информация</a></td>
         </tr>
     <#else>
-        <h3>Пользователей нет</h3>
+        <tr>
+            <td colspan="8"><h3>Пользователей нет</h3></td>
+        </tr>
     </#list>
 </table>
 </body>
