@@ -24,7 +24,7 @@
 <hr>
 <h3>Список всех ТС</h3>
 <form action="/admin/vehiclesPanel" method="get">
-    Поиск пользователя по номеру телефона: <input type="text" name="registrationNumber">
+    Поиск ТС по рег. номеру: <input type="text" name="registrationNumber">
     <input type="submit" value="Поиск"/>
 </form>
 <br>
