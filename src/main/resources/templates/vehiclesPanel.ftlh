@@ -25,7 +25,7 @@
         <input type="text" class="form-control" id="registerNumber" name="registerNumber">
     </div>
     <div class="mb-3">
-        <label for="maxWidth" class="form-label">Максимальный вес груза:</label>
+        <label for="maxWeight" class="form-label">Максимальный вес груза:</label>
         <input type="number" step="0.1" class="form-control" id="maxWidth" name="maxWidth">
     </div>
     <div class="mb-3">
@@ -33,7 +33,7 @@
         <input type="number" step="0.1" class="form-control" id="maxHeight" name="maxHeight">
     </div>
     <div class="mb-3">
-        <label for="maxWeight" class="form-label">Максимальная ширина груза:</label>
+        <label for="maxWidth" class="form-label">Максимальная ширина груза:</label>
         <input type="number" step="0.1" class="form-control" id="maxWeight" name="maxWeight">
     </div>
     <div class="mb-3">
