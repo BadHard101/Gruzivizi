@@ -6,6 +6,7 @@ import com.example.gruzivizi.models.User;
 import com.example.gruzivizi.models.enums.Role;
 import com.example.gruzivizi.models.enums.Status;
 import com.example.gruzivizi.repositories.UserRepository;
+import com.example.gruzivizi.services.AdminService;
 import com.example.gruzivizi.services.OrderService;
 import com.example.gruzivizi.services.UserService;
 import com.example.gruzivizi.services.VehicleService;
@@ -30,6 +31,7 @@ public class AdminController {
     private final OrderService orderService;
     private final VehicleService vehicleService;
     private final UserRepository userRepository;
+    private final AdminService adminService;
 
     @GetMapping("/admin")
     public String admin(Model model) {
@@ -114,25 +116,10 @@ public class AdminController {
     }
 
     @PostMapping("/user/photo/update/{id}")
-    public String photoUpdate(@RequestParam("file1") MultipartFile file1, @PathVariable("id") Long id, Model model, Principal principal) throws IOException {
-        Image image1;
-        User user = userRepository.getById(id);
-        if (file1.getSize() != 0) {
-            image1 =  toImageEntity(file1);
-            image1.setPreviewImage(true);
-            user.setAvatar(image1);
-        }
-        userRepository.save(user);
+    public String photoUpdate(@RequestParam("file1") MultipartFile file1,
+                              @PathVariable("id") Long id,
+                              Model model, Principal principal) throws IOException {
+        User user = adminService.photoUpdate(id, file1);
         return userInfo(user, model, principal);
-    }
-
-    private Image toImageEntity(MultipartFile file) throws IOException {
-        Image image = new Image();
-        image.setName(file.getName());
-        image.setOriginalFileName(file.getOriginalFilename());
-        image.setContentType(file.getContentType());
-        image.setSize(file.getSize());
-        image.setBytes(file.getBytes());
-        return image;
     }
 }
