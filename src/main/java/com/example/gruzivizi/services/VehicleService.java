@@ -58,10 +58,6 @@ public class VehicleService {
         return image;
     }
 
-    public void deleteVehicle(Long id) {
-        vehicleRepository.deleteById(id);
-    }
-
     public Vehicle getVehicleById(Long id) {
         return vehicleRepository.findById(id).orElse(null);
     }

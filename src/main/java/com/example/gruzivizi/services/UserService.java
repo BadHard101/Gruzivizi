@@ -42,20 +42,6 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public void banUser(Long id) {
-        User user = userRepository.findById(id).orElse(null);
-        if (user != null) {
-            if (user.isActive()) {
-                user.setActive(false);
-                log.info("Ban user with id = {}; email: {}", user.getId(), user.getEmail());
-            } else {
-                user.setActive(true);
-                log.info("Unban user with id = {}; email: {}", user.getId(), user.getEmail());
-            }
-        }
-        userRepository.save(user);
-    }
-
     /*public void changeUserRoles(User user, Map<String, String> form) {
         Set<String> roles = Arrays.stream(Role.values())
                 .map(Role::name)
@@ -68,13 +54,4 @@ public class UserService {
         }
         userRepository.save(user);
     }*/
-
-    public void changeUserRole(User user, String role) {
-        Set<Role> roles = new HashSet<>();
-        if (role != null && !role.isEmpty()) {
-            roles.add(Role.valueOf(role));
-        }
-        user.setRoles(roles);
-        userRepository.save(user);
-    }
 }

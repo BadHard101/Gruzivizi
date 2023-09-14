@@ -56,10 +56,6 @@ public class OrderService {
         return image;
     }
 
-    public void deleteOrder(Long id) {
-        orderRepository.deleteById(id);
-    }
-
     public Order getOrderById(Long id) {
         return orderRepository.findById(id).orElse(null);
     }
@@ -76,13 +72,6 @@ public class OrderService {
         }
         orderRepository.save(order);
     }*/
-
-    public void changeOrderStatus(Order order, String status) {
-        if (status != null && !status.isEmpty()) {
-            order.setStatus(Status.valueOf(status));
-        }
-        orderRepository.save(order);
-    }
 
     public boolean validateOrder(Principal principal, Order order) {
         for (Vehicle vehicle : vehicleRepository.findAll()) {

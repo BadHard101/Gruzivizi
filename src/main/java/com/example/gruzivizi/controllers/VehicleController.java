@@ -33,10 +33,4 @@ public class VehicleController {
         vehicleService.saveVehicle(principal, vehicle, file1);
         return "redirect:/admin/vehiclesPanel";
     }
-
-    @PostMapping("/vehicle/delete/{id}")
-    public String deleteVehicle(@PathVariable Long id) {
-        vehicleService.deleteVehicle(id);
-        return "redirect:/";
-    }
 }
