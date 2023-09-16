@@ -84,8 +84,8 @@
             <td>${vehicle.maxHeight}</td>
             <td>${vehicle.maxWidth}</td>
             <td>${vehicle.maxPassengers}</td>
-            <td><#if vehicle.hydroboard>true<#else>false</#if></td>
-            <td><#if vehicle.thermalProtection>true<#else>false</#if></td>
+            <td><#if vehicle.hydroboard>Есть<#else>Нет</#if></td>
+            <td><#if vehicle.thermalProtection>Есть<#else>Нет</#if></td>
             <td><#if vehicle.carrierId != 0>ID: ${vehicle.carrierId}<#else>Свободен</#if></td>
             <td><a href="/admin/vehicle/${vehicle.id}">Подробнее</a></td>
             <td>

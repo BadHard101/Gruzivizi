@@ -19,7 +19,17 @@
         <#list roles as role>
             <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" name="userRole" value="${role}" id="${role}" ${user.roles?seq_contains(role)?string("checked", "")}>
-                <label class="form-check-label" for="${role}">${role}</label>
+                <label class="form-check-label" for="${role}">
+                    <#if role=="ROLE_ADMIN">
+                        Администратор
+                    <#elseif role=="ROLE_CARRIER">
+                        Перевозчик
+                    <#elseif role=="ROLE_USER">
+                        Пользователь
+                    <#else>
+                        ${role}<br>
+                    </#if>
+                </label>
             </div>
         </#list>
     </div>

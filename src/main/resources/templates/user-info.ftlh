@@ -42,7 +42,22 @@
             ${order.dateOfCreated.getHour()}:${order.dateOfCreated.getMinute()}:${order.dateOfCreated.getSecond()}
         </p>
         <p><b>Откуда/Куда:</b> ${order.pointA} / ${order.pointB}</p>
-        <p><b>Статус заказа:</b> <#list order.status as st>${st} </#list></p>
+        <p><b>Статус заказа:</b>
+            <#list order.status as st>
+                <#if st=="CREATED">
+                    Создан
+                <#elseif st=="ACCEPTED">
+                    Принят в работу
+                <#elseif st=="IN_PROCESS">
+                    Перевозится
+                <#elseif st=="COMPLETED">
+                    Выполнен
+                <#elseif st=="CANCELED">
+                    Отменен
+                <#else>
+                    ${st}<br>
+                </#if>
+            </#list></p>
         <a href="/order/${order.id}" class="btn btn-primary">Подробнее...</a>
     </div>
 <#else>
