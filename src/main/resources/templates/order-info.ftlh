@@ -20,7 +20,8 @@
     <p><b>Параметры (вес / высота / ширина):</b>
         ${order.weight} тонн / ${order.height} м. / ${order.width} м.</p>
     <p><b>Статус заказа:</b> <#list order.status as st>${st} </#list></p>
-    <p><b>Дата заказа:</b> ${order.dateOfCreated}</p>
+    <p><b>Дата создания заказа:</b> ${order.dateOfCreated.toLocalDate()} /
+        ${order.dateOfCreated.getHour()}:${order.dateOfCreated.getMinute()}:${order.dateOfCreated.getSecond()}</p>
     <p><b>Кол-во пассажиров:</b> ${order.passengers}</p>
     <p><b>Гидроборт:</b> <#if order.hydroboard>Есть<#else>Нет</#if></p>
     <p><b>Термозащита:</b> <#if order.thermalProtection>Есть<#else>Нет</#if></p>
@@ -35,7 +36,7 @@
     </#if>
 
     <#if user.isAdmin()>
-        <a href="/account">Подробнее о пользователе</a><br><br>
+        <a href="/user/${order.user.id}">Подробнее о пользователе</a><br><br>
     </#if>
 </div>
 </body>

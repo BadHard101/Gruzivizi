@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.security.Principal;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 @Service
@@ -90,5 +91,9 @@ public class OrderService {
         if (!order.getValidateVehicles().isEmpty())
             orderRepository.save(order);
         return !order.getValidateVehicles().isEmpty();
+    }
+
+    public String formatOrderDate(Order order) {
+        return order.getDateOfCreated().format(DateTimeFormatter.ofPattern("dd MMMM yyyy г., HH:mm:ss"));
     }
 }

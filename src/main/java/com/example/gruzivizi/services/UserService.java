@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 @Service
@@ -40,6 +41,10 @@ public class UserService {
     public List<User> listUsers(String tel) {
         if (tel != null) return userRepository.findByPhoneNumber(tel);
         return userRepository.findAll();
+    }
+
+    public String formatUserDate(User user) {
+        return user.getDateOfCreated().format(DateTimeFormatter.ofPattern("dd MMMM yyyy г."));
     }
 
     /*public void changeUserRoles(User user, Map<String, String> form) {

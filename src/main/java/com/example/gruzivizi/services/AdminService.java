@@ -37,7 +37,7 @@ public class AdminService {
         Image image1;
         User user = userRepository.getById(id);
         if (file1.getSize() != 0) {
-            image1 =  toImageEntity(file1);
+            image1 = toImageEntity(file1);
             image1.setPreviewImage(true);
             user.setAvatar(image1);
         }
