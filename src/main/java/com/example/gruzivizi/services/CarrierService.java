@@ -20,6 +20,12 @@ public class CarrierService {
     private final OrderService orderService;
     private final OrderRepository orderRepository;
 
+    /**
+     * Accepts an order by a carrier.
+     *
+     * @param id        The ID of the order to be accepted.
+     * @param principal The security principal of the current user (carrier).
+     */
     public void acceptOrder(Long id, Principal principal) {
         Order order = orderService.getOrderById(id);
         if (order.getStatus().contains(Status.CREATED)) {
@@ -31,6 +37,12 @@ public class CarrierService {
         }
     }
 
+    /**
+     * Cancels an order by admin, even if it was previously accepted by a carrier.
+     *
+     * @param id        The ID of the order to be cancelled.
+     * @param principal The security principal of the current user (carrier).
+     */
     public void cancelOrder(Long id, Principal principal) {
         Order order = orderService.getOrderById(id);
         if (order.getCarrierId() != null &&
@@ -42,6 +54,11 @@ public class CarrierService {
         }
     }
 
+    /**
+     * Processes an order that was accepted by a carrier.
+     *
+     * @param id The ID of the order to be processed.
+     */
     public void processOrder(Long id) {
         Order order = orderService.getOrderById(id);
         if (order.getStatus().contains(Status.ACCEPTED)) {
@@ -50,6 +67,11 @@ public class CarrierService {
         }
     }
 
+    /**
+     * Declines an order that was in process by a carrier.
+     *
+     * @param id The ID of the order to be declined.
+     */
     public void declineOrder(Long id) {
         Order order = orderService.getOrderById(id);
         if (order.getStatus().contains(Status.IN_PROCESS)) {
@@ -58,6 +80,11 @@ public class CarrierService {
         }
     }
 
+    /**
+     * Completes an order that was in process by a carrier.
+     *
+     * @param id The ID of the order to be completed.
+     */
     public void completeOrder(Long id) {
         Order order = orderService.getOrderById(id);
         if (order.getStatus().contains(Status.IN_PROCESS)) {
@@ -66,6 +93,12 @@ public class CarrierService {
         }
     }
 
+    /**
+     * Allows a carrier to take a vehicle.
+     *
+     * @param id        The ID of the vehicle to be taken.
+     * @param principal The security principal of the current user (carrier).
+     */
     public void takeVehicle(Long id, Principal principal) {
         Vehicle vehicle = vehicleService.getVehicleById(id);
         if (!vehicle.isBusy()) {
@@ -75,6 +108,12 @@ public class CarrierService {
         }
     }
 
+    /**
+     * Allows a carrier to release a vehicle.
+     *
+     * @param id        The ID of the vehicle to be released.
+     * @param principal The security principal of the current user (carrier).
+     */
     public void releaseVehicle(Long id, Principal principal) {
         Vehicle vehicle = vehicleService.getVehicleById(id);
         vehicle.setBusy(false);
