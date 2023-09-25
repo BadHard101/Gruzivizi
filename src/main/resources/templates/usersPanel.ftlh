@@ -37,8 +37,18 @@
             <td>${user.id}</td>
             <td>${user.email}</td>
             <td>${user.phoneNumber}</td>
-            <td><#if user.active>true<#else>false</#if></td>
-            <td><#list user.roles as role>${role}<br></#list></td>
+            <td><#if user.active>Да<#else>Нет</#if></td>
+            <td><#list user.roles as role>
+                    <#if role=="ROLE_ADMIN">
+                        Администратор
+                    <#elseif role=="ROLE_CARRIER">
+                        Перевозчик
+                    <#elseif role=="ROLE_USER">
+                        Пользователь
+                    <#else>
+                        ${role}<br>
+                    </#if>
+                </#list></td>
             <td>
                 <form action="/admin/user/ban/${user.id}" method="post">
                     <input type="hidden" name="_csrf" value="${_csrf.token}">

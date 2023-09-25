@@ -44,7 +44,10 @@
     <#list orders as order>
         <tr>
             <td>${order.id}</td>
-            <td>${order.dateOfCreated}</td>
+            <td>
+                ${order.dateOfCreated.toLocalDate()} /
+                ${order.dateOfCreated.getHour()}:${order.dateOfCreated.getMinute()}:${order.dateOfCreated.getSecond()}
+            </td>
             <td>${order.user.name}</td>
             <td>${order.pointA}</td>
             <td>${order.pointB}</td>
@@ -52,9 +55,25 @@
             <td>${order.width}</td>
             <td>${order.weight}</td>
             <td>${order.passengers}</td>
-            <td><#if order.hydroboard>true<#else>false</#if></td>
-            <td><#if order.thermalProtection>true<#else>false</#if></td>
-            <td><#list order.status as status>${status}<br></#list></td>
+            <td><#if order.hydroboard>Да<#else>Нет</#if></td>
+            <td><#if order.thermalProtection>Да<#else>Нет</#if></td>
+            <td>
+                <#list order.status as st>
+                    <#if st=="CREATED">
+                        Создан
+                    <#elseif st=="ACCEPTED">
+                        Принят в работу
+                    <#elseif st=="IN_PROCESS">
+                        Перевозится
+                    <#elseif st=="COMPLETED">
+                        Выполнен
+                    <#elseif st=="CANCELED">
+                        Отменен
+                    <#else>
+                        ${st}<br>
+                    </#if>
+                </#list>
+            </td>
             <td><a href="/admin/order/edit/${order.id}">Редактирование</a></td>
             <td>
                 <form action="/admin/order/delete/${order.id}" method="post">

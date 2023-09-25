@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.security.Principal;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 @Service
@@ -56,10 +57,6 @@ public class OrderService {
         return image;
     }
 
-    public void deleteOrder(Long id) {
-        orderRepository.deleteById(id);
-    }
-
     public Order getOrderById(Long id) {
         return orderRepository.findById(id).orElse(null);
     }
@@ -76,13 +73,6 @@ public class OrderService {
         }
         orderRepository.save(order);
     }*/
-
-    public void changeOrderStatus(Order order, String status) {
-        if (status != null && !status.isEmpty()) {
-            order.setStatus(Status.valueOf(status));
-        }
-        orderRepository.save(order);
-    }
 
     public boolean validateOrder(Principal principal, Order order) {
         for (Vehicle vehicle : vehicleRepository.findAll()) {
@@ -101,5 +91,9 @@ public class OrderService {
         if (!order.getValidateVehicles().isEmpty())
             orderRepository.save(order);
         return !order.getValidateVehicles().isEmpty();
+    }
+
+    public String formatOrderDate(Order order) {
+        return order.getDateOfCreated().format(DateTimeFormatter.ofPattern("dd MMMM yyyy г., HH:mm:ss"));
     }
 }

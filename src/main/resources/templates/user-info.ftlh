@@ -31,15 +31,33 @@
 <p><b>ID:</b> ${user.id}</p>
 <p><b>Email:</b> ${user.email}</p>
 <p><b>Номер телефона:</b> ${user.phoneNumber}</p>
-<p><b>Дата создания:</b> ${user.dateOfCreated}</p>
+<p><b>Дата создания аккаунта:</b> ${user.dateOfCreated.toLocalDate()}</p>
 <hr>
 <h2>Заказы пользователя ${user.name}:</h2>
 <#list orders as order>
     <hr>
     <div>
-        <p><b>Дата заказа:</b> ${order.dateOfCreated}</p>
+        <p><b>Дата создания заказа:</b>
+            ${order.dateOfCreated.toLocalDate()} /
+            ${order.dateOfCreated.getHour()}:${order.dateOfCreated.getMinute()}:${order.dateOfCreated.getSecond()}
+        </p>
         <p><b>Откуда/Куда:</b> ${order.pointA} / ${order.pointB}</p>
-        <p><b>Статус заказа:</b> <#list order.status as st>${st} </#list></p>
+        <p><b>Статус заказа:</b>
+            <#list order.status as st>
+                <#if st=="CREATED">
+                    Создан
+                <#elseif st=="ACCEPTED">
+                    Принят в работу
+                <#elseif st=="IN_PROCESS">
+                    Перевозится
+                <#elseif st=="COMPLETED">
+                    Выполнен
+                <#elseif st=="CANCELED">
+                    Отменен
+                <#else>
+                    ${st}<br>
+                </#if>
+            </#list></p>
         <a href="/order/${order.id}" class="btn btn-primary">Подробнее...</a>
     </div>
 <#else>

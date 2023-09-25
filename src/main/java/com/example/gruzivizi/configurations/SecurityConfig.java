@@ -21,12 +21,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/", "/order/**", "/images/**", "/registration", "/user/**", "/carrier/**")
+                .antMatchers("/", "/registration") // можно тем, кто не авторизован
                 .permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/login")
+                .loginPage("/login") // неавторизованых перебрасывает сюда
                 .permitAll()
                 .failureUrl("/login-error")
                 .and()

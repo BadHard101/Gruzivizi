@@ -18,7 +18,6 @@ import java.security.Principal;
 @Controller
 @RequiredArgsConstructor
 public class UserController {
-    private boolean loginFlag = false;
     private final UserService userService;
 
     private final OrderService orderService;
