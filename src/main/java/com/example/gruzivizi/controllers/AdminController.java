@@ -12,10 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -24,74 +21,75 @@ import java.security.Principal;
 @Controller
 @RequiredArgsConstructor
 @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+@RequestMapping("/admin")
 public class AdminController {
     private final UserService userService;
     private final OrderService orderService;
     private final VehicleService vehicleService;
     private final AdminService adminService;
 
-    @GetMapping("/admin")
+    @GetMapping("/")
     public String admin(Model model) {
-        return "admin";
+        return "admin/admin";
     }
 
-    @GetMapping("/admin/usersPanel")
+    @GetMapping("/usersPanel")
     public String usersPanel(@RequestParam(name = "tel", required = false) String tel, Model model) {
         model.addAttribute("users", userService.listUsers(tel));
-        return "usersPanel";
+        return "admin/panels/usersPanel";
     }
 
-    @GetMapping("/admin/ordersPanel")
+    @GetMapping("/ordersPanel")
     public String ordersPanel(@RequestParam(name = "id", required = false) Long id, Model model) {
         model.addAttribute("orders", orderService.listOrders(id));
-        return "ordersPanel";
+        return "admin/panels/ordersPanel";
     }
 
-    @GetMapping("/admin/vehiclesPanel")
+    @GetMapping("/vehiclesPanel")
     public String vehiclesPanel(@RequestParam(name = "registrationNumber", required = false) String registrationNumber, Model model) {
         model.addAttribute("vehicles", vehicleService.listVehicles(registrationNumber));
-        return "vehiclesPanel";
+        return "admin/panels/vehiclesPanel";
     }
 
-    @PostMapping("/admin/order/delete/{id}")
+    @PostMapping("/order/delete/{id}")
     public String orderDelete(@PathVariable("id") Long id) {
         adminService.deleteOrder(id);
         return "redirect:/admin/ordersPanel";
     }
 
-    @PostMapping("/admin/vehicle/delete/{id}")
+    @PostMapping("/vehicle/delete/{id}")
     public String vehicleDelete(@PathVariable("id") Long id) {
         adminService.deleteVehicle(id);
         return "redirect:/admin/vehiclesPanel";
     }
 
-    @PostMapping("/admin/user/ban/{id}")
+    @PostMapping("/user/ban/{id}")
     public String userBan(@PathVariable("id") Long id) {
         adminService.banUser(id);
         return "redirect:/admin/usersPanel";
     }
 
-    @GetMapping("/admin/user/edit/{user}")
+    @GetMapping("/user/edit/{user}")
     public String userEdit(@PathVariable("user") User user, Model model) {
         model.addAttribute("user", user);
         model.addAttribute("roles", Role.values());
-        return "user-edit";
+        return "admin/users/user-edit";
     }
 
-    @PostMapping("/admin/user/edit")
+    @PostMapping("/user/edit")
     public String userEdit(@RequestParam("userId") User user, @RequestParam("userRole") String role) {
         adminService.changeUserRole(user, role);
         return "redirect:/admin/usersPanel";
     }
 
-    @GetMapping("/admin/order/edit/{order}")
+    @GetMapping("/order/edit/{order}")
     public String orderEdit(@PathVariable("order") Order order, Model model) {
         model.addAttribute("order", order);
         model.addAttribute("status", Status.values());
-        return "order-edit";
+        return "admin/orders/order-edit";
     }
 
-    @PostMapping("/admin/order/edit")
+    @PostMapping("/order/edit")
     public String orderEdit(@RequestParam("orderId") Order order, @RequestParam("orderStatus") String status) {
         adminService.changeOrderStatus(order, status);
         return "redirect:/admin/ordersPanel";
@@ -102,14 +100,14 @@ public class AdminController {
         model.addAttribute("user", user);
         model.addAttribute("orders", user.getOrders());
         model.addAttribute("admin", orderService.getUserByPrincipal(principal));
-        return "user-info";
+        return "user/user-info";
     }
 
-    @GetMapping("/admin/vehicle/{id}")
+    @GetMapping("/vehicle/{id}")
     public String carriersVehicles(@PathVariable("id") Long id, Model model, Principal principal) {
         model.addAttribute("vehicle", vehicleService.getVehicleById(id));
         model.addAttribute("user", orderService.getUserByPrincipal(principal));
-        return "vehicle-info";
+        return "carrier/vehicle-info";
     }
 
     @PostMapping("/user/photo/update/{id}")

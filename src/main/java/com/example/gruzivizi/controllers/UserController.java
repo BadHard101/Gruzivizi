@@ -25,7 +25,7 @@ public class UserController {
 
     @GetMapping("/login")
     public String login() {
-        return "login";
+        return "auth/login";
     }
 
     @GetMapping("/login-error")
@@ -40,12 +40,12 @@ public class UserController {
             }
         }
         model.addAttribute("errorMessage", "Введены неверные данные");
-        return "login";
+        return "auth/login";
     }
 
     @GetMapping("/registration")
     public String registration() {
-        return "registration";
+        return "auth/registration";
     }
 
 
@@ -53,7 +53,7 @@ public class UserController {
     public String createUser(User user, Model model) {
         if (!userService.createUser(user)) {
             model.addAttribute("errorMessage", "Пользователь с email: " + user.getEmail() + " уже существует");
-            return "registration";
+            return "auth/registration";
         }
         return "redirect:/login";
     }
@@ -64,6 +64,6 @@ public class UserController {
         model.addAttribute("user", user);
         model.addAttribute("admin", user);
         model.addAttribute("orders", user.getOrders());
-        return "user-info";
+        return "user/user-info";
     }
 }

@@ -17,7 +17,7 @@
     <img src="/images/${user.avatar.id}" height="250px"/><br><br>
 </#if>
 <#if admin.isAdmin()>
-    <form action="/user/photo/update/${user.id}" method="post" enctype="multipart/form-data">
+    <form action="/admin/user/photo/update/${user.id}" method="post" enctype="multipart/form-data">
         <div class="mb-3">
             <label class="form-label">Фотография:</label><br>
             <input class="form-control" type="file" name="file1"/>

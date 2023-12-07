@@ -26,14 +26,14 @@ public class CarrierController {
         model.addAttribute("orders", orderService.list());
         model.addAttribute("vehicles", vehicleService.list());
         model.addAttribute("user", orderService.getUserByPrincipal(principal));
-        return "carrier";
+        return "carrier/carrier";
     }
 
     @GetMapping("/carrier/vehicle/{id}")
     public String carriersVehicles(@PathVariable("id") Long id, Model model, Principal principal) {
         model.addAttribute("vehicle", vehicleService.getVehicleById(id));
         model.addAttribute("user", orderService.getUserByPrincipal(principal));
-        return "vehicle-info";
+        return "carrier/vehicle-info";
     }
 
     @PostMapping("/carrier/vehicle/accept/{id}")

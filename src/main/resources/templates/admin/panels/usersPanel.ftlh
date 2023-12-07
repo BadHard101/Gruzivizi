@@ -56,7 +56,7 @@
                 </form>
             </td>
             <td><a href="/admin/user/edit/${user.id}" class="btn btn-primary">Редактирование</a></td>
-            <td><a href="/user/${user.id}" class="btn btn-primary">Подробная информация</a></td>
+            <td><a href="/admin/user/${user.id}" class="btn btn-primary">Подробная информация</a></td>
         </tr>
     <#else>
         <tr>

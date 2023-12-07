@@ -22,7 +22,7 @@ public class OrderController {
     public String orders(@RequestParam(name = "id", required = false) Long id, Principal principal, Model model) {
         model.addAttribute("orders", orderService.listOrders(id));
         model.addAttribute("user", orderService.getUserByPrincipal(principal));
-        return "orders";
+        return "user/orders";
     }
 
     @GetMapping("/order/{id}")
@@ -30,7 +30,13 @@ public class OrderController {
         Order order = orderService.getOrderById(id);
         model.addAttribute("order", order);
         model.addAttribute("user", orderService.getUserByPrincipal(principal));
-        return "order-info";
+        return "user/order-info";
+    }
+
+    @GetMapping("/getAddingOrderPage")
+    public String getAddingOrderPage(Principal principal, Model model) {
+        model.addAttribute("user", orderService.getUserByPrincipal(principal));
+        return "user/addOrder";
     }
 
     @PostMapping("/order/create")
@@ -44,10 +50,8 @@ public class OrderController {
                     "введенных данных в заказ или свяжитесь с нами по телефону: +7 (800) 255-35-35");
         }
 
-        // Добавьте эту строку, чтобы возвращаться на страницу с заказами в случае ошибки
-        model.addAttribute("orders", orderService.listOrders(null));
         model.addAttribute("user", orderService.getUserByPrincipal(principal));
-        return "orders";
+        return "user/addOrder";
     }
 
 }
