@@ -33,7 +33,7 @@ public class OrderController {
         return "user/order-info";
     }
 
-    @GetMapping("/getAddingOrderPage")
+    @GetMapping("/order/getAddingOrderPage")
     public String getAddingOrderPage(Principal principal, Model model) {
         model.addAttribute("user", orderService.getUserByPrincipal(principal));
         return "user/addOrder";
