@@ -26,7 +26,7 @@
     </div>
     <div class="mb-3">
         <label for="maxWeight" class="form-label">Максимальный вес груза:</label>
-        <input type="number" step="0.1" class="form-control" id="maxWidth" name="maxWidth">
+        <input type="number" step="0.1" class="form-control" id="maxWeight" name="maxWeight">
     </div>
     <div class="mb-3">
         <label for="maxHeight" class="form-label">Максимальная высота груза:</label>
@@ -34,7 +34,7 @@
     </div>
     <div class="mb-3">
         <label for="maxWidth" class="form-label">Максимальная ширина груза:</label>
-        <input type="number" step="0.1" class="form-control" id="maxWeight" name="maxWeight">
+        <input type="number" step="0.1" class="form-control" id="maxWidth" name="maxWidth">
     </div>
     <div class="mb-3">
         <label for="maxPassengers" class="form-label">Максимальное количество пассажиров:</label>
