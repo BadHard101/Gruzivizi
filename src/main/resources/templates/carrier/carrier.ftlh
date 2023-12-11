@@ -8,6 +8,9 @@
         body {
             padding: 1% 5% 2% 5%;
         }
+        .regNum {
+            min-width: 120px
+        }
     </style>
 </head>
 <body>
@@ -20,7 +23,7 @@
     <div>
         <#list vehicles as vehicle>
             <#if vehicle.busy && vehicle.carrierId == user.id>
-                <a href="/carrier/vehicle/${vehicle.id}" class="btn btn-primary">${vehicle.registerNumber}</a>
+                <a href="/carrier/vehicle/${vehicle.id}" class="btn btn-primary regNum">${vehicle.registerNumber}</a>
             </#if>
         </#list>
     </div>
@@ -29,7 +32,7 @@
     <div>
         <#list vehicles as vehicle>
             <#if vehicle.busy>
-                <a href="/carrier/vehicle/${vehicle.id}" class="btn btn-primary">${vehicle.registerNumber}</a>
+                <a href="/carrier/vehicle/${vehicle.id}" class="btn btn-primary regNum">${vehicle.registerNumber}</a>
             </#if>
         </#list>
     </div>
@@ -38,7 +41,7 @@
     <div>
         <#list vehicles as vehicle>
             <#if !vehicle.busy>
-                <a href="/carrier/vehicle/${vehicle.id}" class="btn btn-primary">${vehicle.registerNumber}</a>
+                <a href="/carrier/vehicle/${vehicle.id}" class="btn btn-primary regNum">${vehicle.registerNumber}</a>
             </#if>
         </#list>
     </div>
@@ -78,7 +81,7 @@
                     <td>
                         <#list order.getValidateVehicles() as vehicle>
                             <#if !vehicle.busy || vehicle.carrierId == user.id>
-                                <a href="/carrier/vehicle/${vehicle.id}" class="btn btn-primary">${vehicle.registerNumber}</a>
+                                <a href="/carrier/vehicle/${vehicle.id}" class="btn btn-primary regNum">${vehicle.registerNumber}</a>
                             </#if>
                         </#list>
                     </td>
@@ -147,13 +150,13 @@
                     <td>
                         <#list order.getValidateVehicles() as vehicle>
                             <#if !vehicle.busy>
-                                <a href="/carrier/vehicle/${vehicle.id}" class="btn btn-primary">${vehicle.registerNumber}</a>
+                                <a href="/carrier/vehicle/${vehicle.id}" class="btn btn-primary regNum">${vehicle.registerNumber}</a>
                             </#if>
                         </#list>
                     </td>
                     <td>
                         <#list order.getValidateVehicles() as vehicle>
-                            <a href="/carrier/vehicle/${vehicle.id}" class="btn btn-primary">${vehicle.registerNumber}</a>
+                            <a href="/carrier/vehicle/${vehicle.id}" class="btn btn-primary regNum">${vehicle.registerNumber}</a>
                         </#list>
                     </td>
                 </tr>

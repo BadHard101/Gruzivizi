@@ -19,7 +19,21 @@
     <p><b>Откуда / Куда:</b> ${order.pointA} / ${order.pointB}</p>
     <p><b>Параметры (вес / высота / ширина):</b>
         ${order.weight} тонн / ${order.height} м. / ${order.width} м.</p>
-    <p><b>Статус заказа:</b> <#list order.status as st>${st} </#list></p>
+    <p><b>Статус заказа:</b> <#list order.status as st>
+            <#if st=="CREATED">
+                Создан
+            <#elseif st=="ACCEPTED">
+                Принят в работу
+            <#elseif st=="IN_PROCESS">
+                Перевозится
+            <#elseif st=="COMPLETED">
+                Выполнен
+            <#elseif st=="CANCELED">
+                Отменен
+            <#else>
+                ${st}
+            </#if>
+        </#list></p>
     <p><b>Дата создания заказа:</b> ${order.dateOfCreated.toLocalDate()} /
         ${order.dateOfCreated.getHour()}:${order.dateOfCreated.getMinute()}:${order.dateOfCreated.getSecond()}</p>
     <p><b>Кол-во пассажиров:</b> ${order.passengers}</p>

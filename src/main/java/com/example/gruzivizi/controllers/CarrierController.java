@@ -41,43 +41,43 @@ public class CarrierController {
     @PostMapping("/vehicle/accept/{id}")
     public String acceptVehicle(@PathVariable("id") Long id, Principal principal) {
         carrierService.takeVehicle(id, principal);
-        return "redirect:/carrier";
+        return "redirect:/carrier/";
     }
 
     @PostMapping("/vehicle/decline/{id}")
     public String declineVehicle(@PathVariable("id") Long id, Principal principal) {
         carrierService.releaseVehicle(id, principal);
-        return "redirect:/carrier";
+        return "redirect:/carrier/";
     }
 
     @PostMapping("/order/accept/{id}")
     public String acceptOrder(@PathVariable("id") Long id, Principal principal) {
         carrierService.acceptOrder(id, principal);
-        return "redirect:/carrier";
+        return "redirect:/carrier/";
     }
 
     @PostMapping("/order/cancel/{id}")
     public String cancelOrder(@PathVariable("id") Long id, Principal principal) {
         carrierService.cancelOrder(id, principal);
-        return "redirect:/carrier";
+        return "redirect:/carrier/";
     }
 
     @PostMapping("/order/process/{id}")
     public String processOrder(@PathVariable("id") Long id) {
         carrierService.processOrder(id);
-        return "redirect:/carrier";
+        return "redirect:/carrier/";
     }
 
     @PostMapping("/order/decline/{id}")
     public String declineOrder(@PathVariable("id") Long id) {
         carrierService.declineOrder(id);
-        return "redirect:/carrier";
+        return "redirect:/carrier/";
     }
 
     @PostMapping("/order/complete/{id}")
     public String completeOrder(@PathVariable("id") Long id) {
         carrierService.completeOrder(id);
-        return "redirect:/carrier";
+        return "redirect:/carrier/";
     }
 
 }
