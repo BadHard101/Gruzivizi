@@ -54,7 +54,7 @@
                 <a href="/admin/" class="btn btn-custom btn-custom-warning"><i class="bi bi-gear"></i> Панель администратора</a>
             </#if>
             <#if user.isCarrier()>
-                <a href="/carrier" class="btn btn-custom btn-custom-custom"><i class="bi bi-truck"></i> Панель перевозчика</a>
+                <a href="/carrier/" class="btn btn-custom btn-custom-custom"><i class="bi bi-truck"></i> Панель перевозчика</a>
             </#if>
         </div>
         <form action="/logout" method="post">
