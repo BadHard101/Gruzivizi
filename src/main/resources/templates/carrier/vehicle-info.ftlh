@@ -37,7 +37,7 @@
         </form>
     </#if>
     <#if vehicle.busy && vehicle.carrierId != user.id>
-        <h3 style="color: red">ТС занято другим перевозщиком</h3>
+        <h3 style="color: red">ТС занято другим перевозчиком</h3>
     </#if>
 </div>
 </body>

@@ -50,7 +50,7 @@
     </#if>
 
     <#if user.isAdmin()>
-        <a href="/user/${order.user.id}">Подробнее о пользователе</a><br><br>
+        <a href="/admin/user/${order.user.id}">Подробнее о пользователе</a><br><br>
     </#if>
 </div>
 </body>
